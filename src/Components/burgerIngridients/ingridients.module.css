@@ -55,7 +55,7 @@
 
 /*декорация ползунка*/
 .menu::-webkit-scrollbar-thumb{
-    background: #262629;
+    background: #8484ac;
 }
 
 
@@ -65,6 +65,24 @@
     font-size:24px;
     font-weight:bold;
 }
+
+.tabDiv{
+    composes:myFlex;
+    width: 200px;
+    height:60px;
+    background: #8383ab;
+    cursor:pointer;
+    border: 2px solid #ecedef;
+    transition: 1s;
+}
+
+.tabDiv:hover{
+    background: #ecedef;
+    border: 2px solid #8282aa;
+    transition: 1s;
+    color: #8484ac;
+}
+
 
 /*Текст в заголовке*/
 .appText{

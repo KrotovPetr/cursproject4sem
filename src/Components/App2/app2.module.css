@@ -1,0 +1,14 @@
+.field{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width:100%;
+    background: #ecedef;
+}
+
+
+.mainPart{
+    height:95vh;
+}

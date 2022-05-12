@@ -10,7 +10,7 @@
 
 /*декорация ползунка*/
 ::-webkit-scrollbar-thumb{
-    background: #262629;
+    background: #8484ac;
 }
 
 
@@ -23,20 +23,12 @@
     align-items: center;
 }
 
-.backGround{
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height:100vh;
-    background: #edeef0;
-}
+
 /*разметка страницы*/
 .main{
     composes:myFlex;
     align-items: flex-start;
-    height:fit-content;
+    height:95vh;
     width: fit-content;
     column-gap: 40px;
     max-width: 1280px;

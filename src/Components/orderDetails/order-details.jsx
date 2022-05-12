@@ -1,40 +1,31 @@
-import React from 'react';
-import orderStyles from './order-details.module.css';
-import { CheckMarkIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
+import React from "react";
+import orderStyles from "./order-details.module.css";
+import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
-const OrderDetails = (props) => {
-    return (
-        <div className={orderStyles.main}>
-            <h2
-                className={
-                    orderStyles.headDig + ' text text_type_digits-large'
-                }>
-                {props.data}
-            </h2>
-            <p className={orderStyles.ident + ' text text_type_main-medium'}>
-                идентификатор заказа
-            </p>
-            <div className={orderStyles.done}>
-                <div className={orderStyles.doneMini}>
-                    <div className={orderStyles.doneDiv}>
-                        <CheckMarkIcon type="primary" />
-                    </div>
-                </div>
-            </div>
-            <div className={orderStyles.descr}>
-                <p className="text text_type_main-small">
-                    Ваш заказ начали готовить
-                </p>
-                <p className="text text_type_main-small text_color_inactive">
-                    Дождитесь готовности на орбитальной станции
-                </p>
-            </div>
+const OrderDetails = () => {
+  return (
+    <div className={orderStyles.main}>
+      <h2 className={orderStyles.headDig}>32715</h2>
+      <p className={orderStyles.ident + " text text_type_main-medium"}>
+        идентификатор заказа
+      </p>
+      <div className={orderStyles.done}>
+        <div className={orderStyles.doneMini}>
+          <div className={orderStyles.doneDiv}>
+            <CheckMarkIcon type="primary" />
+          </div>
         </div>
-    );
+      </div>
+      <div className={orderStyles.descr}>
+        <p className={orderStyles.appText}>Ваш заказ обрабатывается</p>
+        <p className={orderStyles.appText}>Дождитесь уведомления, пожалуйста</p>
+      </div>
+    </div>
+  );
 };
 
 OrderDetails.propTypes = {
-    data: PropTypes.number,
+  data: PropTypes.number,
 };
 export default OrderDetails;

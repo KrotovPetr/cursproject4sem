@@ -89,7 +89,10 @@
 .headerText:hover{
     text-decoration: underline;
     transition:1s;
+
 }
+
+
 
 .headerLogoText{
     color: #000001;
