@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import modalStyles from "./modal-styles.module.css";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import IngredientDetails from "../ingredientDetails/ingredient-details";
-import OrderDetails from "../orderDetails/order-details";
 import ModalOverlay from "../modalOverlay/modal-overlay";
 import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
-import ingredientsBurger from "../burgerIngridients/ingridients.module.css";
 
 const Modal = (props) => {
   const refRoot = document.getElementById("modal");
+
+  function closeModal() {
+    props.turnOff();
+    props.clearInfo();
+  }
 
   useEffect(() => {
     const closeByEscape = (e) => {
@@ -31,7 +33,7 @@ const Modal = (props) => {
       >
         <div className={modalStyles.topLevel}>
           <h1 className={modalStyles.appText}>{props.title}</h1>
-          <div className={modalStyles.logoDiv} onClick={props.turnOff}>
+          <div className={modalStyles.logoDiv} onClick={closeModal}>
             <CloseIcon type="secondary" />
           </div>
         </div>

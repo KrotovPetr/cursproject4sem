@@ -9,17 +9,23 @@ import {
 import Modal from "../modal/modal";
 import { AppContext } from "../../Services/appContext";
 import OrderDetails from "../orderDetails/order-details";
-import ingredientsBurger from "../burgerIngridients/ingridients.module.css";
 
 const OrderConstructor = () => {
+  function changeOrder(index) {
+    appData.setComponent([
+      ...appData.compArr.slice(0, index),
+      ...appData.compArr.slice(index + 1, appData.compArr.length),
+    ]);
+  }
+
   //подвязка к контексту
   const appData = useContext(AppContext);
-  const fetchURL = "https://norma.nomoreparties.space/api/orders";
+
   //состояние под ответ
   const [orderInfo, setOrderInfo] = useState(null);
   //функция составления массива
   const getOrder = () => {
-    // const ingredients = [appData.buns, ...appData.compArr, appData.buns];
+    // const ingredients = [...appData.compArr];
     // const ingredientIds = ingredients.map((ingredient) => ingredient._id);
     //
     // //запрос
@@ -57,38 +63,41 @@ const OrderConstructor = () => {
     setActive(true);
   };
 
+  function clearInfo() {
+    appData.setComponent([]);
+  }
+
   return (
     <div className={constStyles.area}>
       <div className={constStyles.orderArea}>
         <div className={constStyles.order}>
           {/*Блок формирования центральной части бургера*/}
           {isActive && (
-            <Modal turnOff={turnOff}>
+            <Modal turnOff={turnOff} clearInfo={clearInfo}>
               <OrderDetails />
             </Modal>
           )}
           {appData.compArr.length > 0 &&
-            appData.compArr.map(
-              (cards) =>
-                cards.type !== "bun" && (
-                  <div className={constStyles.position} key={cards["_id"]}>
-                    <div className={constStyles.dragClass}>
-                      <DragIcon type="secondary" />
-                    </div>
-                    <div className={constStyles.posBlock}>
-                      <img
-                        src={cards.image}
-                        width="80px"
-                        height="40px"
-                        className={constStyles.photoBlock}
-                      />
+            appData.compArr.map((cards, index) => (
+              <div className={constStyles.position} key={index}>
+                <div className={constStyles.dragClass}>
+                  <DragIcon type="secondary" />
+                </div>
+                <div className={constStyles.posBlock}>
+                  <img
+                    src={cards.image}
+                    width="80px"
+                    height="40px"
+                    className={constStyles.photoBlock}
+                  />
 
-                      <p className={constStyles.headerText}>{cards.name}</p>
-                      <DeleteIcon type="secondary" />
-                    </div>
+                  <p className={constStyles.headerText}>{cards.name}</p>
+                  <div onClick={(e) => changeOrder(index)}>
+                    <DeleteIcon type="secondary" />
                   </div>
-                )
-            )}
+                </div>
+              </div>
+            ))}
           {/*Конец блока части формирования центральной части*/}
         </div>
         {/*Блок цены*/}

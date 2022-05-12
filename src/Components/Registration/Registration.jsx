@@ -48,6 +48,24 @@ const Registration = (props) => {
             // onChange={handleChange2}
           />
         </div>
+        <div className={formStyles.inputContainer}>
+          <p>Фамилия</p>
+          <input
+            type="password"
+            size="40"
+            // value={valuePassword}
+            // onChange={handleChange2}
+          />
+        </div>
+        <div className={formStyles.inputContainer}>
+          <p>Имя</p>
+          <input
+            type="password"
+            size="40"
+            // value={valuePassword}
+            // onChange={handleChange2}
+          />
+        </div>
 
         <button
           onClick={(e) => {

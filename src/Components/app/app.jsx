@@ -5,32 +5,6 @@ import appStyles from "./app.module.css";
 import OrderConstructor from "../burgerConstructor/order-constructor";
 import { AppContext } from "../../Services/appContext";
 import Data from "../../utils/data";
-// функция записи в состояния
-const reducer = (order, action) => {
-  switch (action.type) {
-    case "addBun":
-      return order.buns
-        ? {
-            ...order,
-            buns: action.data,
-            totalPrice:
-              order.totalPrice + 2 * action.data.price - 2 * order.buns.price,
-          }
-        : {
-            ...order,
-            buns: action.data,
-            totalPrice: order.totalPrice + 2 * action.data.price,
-          };
-    case "addIngredient":
-      return {
-        ...order,
-        components: [...order.components, action.data],
-        totalPrice: order.totalPrice + action.data.price,
-      };
-    default:
-      throw new Error(`Wrong type of action: ${action.type}`);
-  }
-};
 
 const App = () => {
   // ccылка
@@ -40,46 +14,36 @@ const App = () => {
   const [state, setState] = useState([]);
 
   //состояние заказа
-  const [order, dispatch] = useReducer(reducer, {
-    buns: null,
-    components: [],
-  });
+  const [components, setComponents] = useState([]);
 
   //внесение изменений в заказ
   const changeOrder = (card) => {
-    card && card.type === "bun"
-      ? dispatch({ type: "addBun", data: card })
-      : dispatch({ type: "addIngredient", data: card });
+    setComponents([...components, card]);
   };
 
   //подсчёт итоговой суммы
   const totalPrice = useMemo(() => {
-    if (order.buns) {
-      if (order.components.length === 0) {
-        return order.buns.price * 2;
-      } else {
-        let price = 2 * order.buns.price;
-        order.components.map((ingredient) => {
-          price += ingredient.price;
-        });
-        return price;
-      }
-    } else {
+    if (components.length === 0) {
       return 0;
+    } else {
+      let price = 0;
+      components.map((ingredient) => {
+        price += ingredient.price;
+      });
+      return price;
     }
-  }, [order]);
+  }, [components]);
 
   //взаимодействие с контекстом
   const user = useMemo(() => {
     const obj = {
-      buns: order.buns,
-      compArr: order.components,
+      compArr: components,
       totalPrice: totalPrice,
       setOrder: changeOrder,
+      setComponent: setComponents,
     };
-
     return obj;
-  }, [order, totalPrice]);
+  }, [components]);
 
   const data = Data();
   //fetch запрос при отрисовке
@@ -90,22 +54,23 @@ const App = () => {
 
   // функция получения json
   const fetchData = () => {
-    fetch("/components", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка ${res.status}`);
-        }
-      })
-      .then((data) => console.log(data))
-      .catch((e) => console.error(e));
+    // fetch("/components", {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/json;charset=utf-8",
+    //   },
+    // })
+    //   .then((res) => {
+    //     if (res.ok) {
+    //       return res.json();
+    //     } else {
+    //       return Promise.reject(`Ошибка ${res.status}`);
+    //     }
+    //   })
+    //   .then((data) => console.log(data))
+    //   .catch((e) => console.error(e));
   };
+
   return (
     <>
       <div className={appStyles.page}>
