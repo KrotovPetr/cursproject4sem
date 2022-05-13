@@ -3,10 +3,10 @@ import orderStyles from "./order-details.module.css";
 import { CheckMarkIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 
-const OrderDetails = () => {
+const OrderDetails = (props) => {
   return (
     <div className={orderStyles.main}>
-      <h2 className={orderStyles.headDig}>32715</h2>
+      <h2 className={orderStyles.headDig}>{props.numberOrder}</h2>
       <p className={orderStyles.ident + " text text_type_main-medium"}>
         идентификатор заказа
       </p>

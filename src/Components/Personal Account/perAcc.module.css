@@ -20,6 +20,41 @@
     border-radius: 30px;
 }
 
+.orderData{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height:100%;
+    width:100%;
+    overflow: auto;
+    border-radius: 30px;
+}
+
+.card{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+    height:300px;
+    width:300px;
+    background: #f5f5f5;
+
+}
+
+
+.priceText{
+    color:#2f2f37;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.numberText{
+    color:#2f2f37;
+    font-size: 40px;
+    font-weight: bold;
+}
 
 .infoPic{
     display: flex;

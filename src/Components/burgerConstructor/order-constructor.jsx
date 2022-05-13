@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import constStyles from "./order-constructor.module.css";
 import {
   Button,
@@ -23,11 +23,14 @@ const OrderConstructor = () => {
 
   //состояние под ответ
   const [orderInfo, setOrderInfo] = useState(null);
+  const [numberOfOrder, setOrder] = useState(0);
   //функция составления массива
   const getOrder = () => {
     const ingredients = [...appData.compArr];
     const ingredientIds = ingredients.map((ingredient) => ingredient.id);
-
+    setOrder(
+      Math.floor(Math.random() * 10000) + Math.floor(Math.random() * 10000)
+    );
     //запрос
     fetch("/order", {
       method: "POST",
@@ -38,6 +41,7 @@ const OrderConstructor = () => {
         price: appData.totalPrice,
         email: "user@mail.ru",
         components: JSON.stringify(ingredientIds),
+        number: numberOfOrder,
       }),
     })
       .then((res) => {
@@ -78,7 +82,7 @@ const OrderConstructor = () => {
           {/*Блок формирования центральной части бургера*/}
           {isActive && (
             <Modal turnOff={turnOff} clearInfo={clearInfo}>
-              <OrderDetails />
+              <OrderDetails numberOrder={numberOfOrder} />
             </Modal>
           )}
           {appData.compArr.length > 0 &&

@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import perStyles from "./perAcc.module.css";
 const PerAcc = () => {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    fetch("/order", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Ошибка ${res.status}`);
+        }
+      })
+      .then((data) => setOrders(data))
+      .catch((e) => console.error(e));
+  }, []);
   return (
     <div className={perStyles.page}>
       <div className={perStyles.info}>
@@ -17,7 +35,18 @@ const PerAcc = () => {
         </div>
       </div>
       <div className={perStyles.orders}>
-        <p> У ВАС ПОКА НЕТ ЗАКАЗОВ! </p>
+        {orders.length === 0 ? (
+          <p> У ВАС ПОКА НЕТ ЗАКАЗОВ! </p>
+        ) : (
+          <div className={perStyles.orderData}>
+            {orders.map((cards, index) => (
+              <div key={index} className={perStyles.card}>
+                <p className={perStyles.numberText}>{cards.number}</p>
+                <p className={perStyles.priceText}>{cards.price}&#x20bd;</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

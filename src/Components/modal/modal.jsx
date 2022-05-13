@@ -10,7 +10,7 @@ const Modal = (props) => {
 
   function closeModal() {
     props.turnOff();
-    props.clearInfo();
+    props.title !== "" && props.clearInfo();
   }
 
   useEffect(() => {
