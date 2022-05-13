@@ -33,7 +33,7 @@
 }
 
 .headerText{
-    color: #8282aa;
+    color: #241e36;
     font-family: 'JetBrains Mono', monospace;
     font-size:24px;
     font-weight:bold;
@@ -41,7 +41,7 @@
 }
 
 .appText{
-    color: #8282aa;
+    color: #241e36;
     font-family: 'JetBrains Mono', monospace;
     font-size:18px;
     font-weight:bold;
@@ -50,7 +50,7 @@
 
 .ident{
     margin:32px 0 60px 0;
-    color: #8282aa;
+    color: #241e36;
     font-family: 'JetBrains Mono', monospace;
     font-size:24px;
     font-weight:bold;
@@ -65,7 +65,7 @@
 
 .headDig{
     composes:flexModel;
-    color: #8282aa;
+    color: #241e36;
     font-family: 'JetBrains Mono', monospace;
     font-size:80px;
     font-weight:bold;

@@ -25,26 +25,30 @@ const OrderConstructor = () => {
   const [orderInfo, setOrderInfo] = useState(null);
   //функция составления массива
   const getOrder = () => {
-    // const ingredients = [...appData.compArr];
-    // const ingredientIds = ingredients.map((ingredient) => ingredient._id);
-    //
-    // //запрос
-    // fetch("/order", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json;charset=utf-8",
-    //   },
-    //   body: JSON.stringify({ ingredients: ingredientIds }),
-    // })
-    //   .then((res) => {
-    //     if (res.ok) {
-    //       return res.json();
-    //     } else {
-    //       return Promise.reject(`Ошибка ${res.status}`);
-    //     }
-    //   })
-    //   .then((data) => setOrderInfo(data))
-    //   .catch((e) => console.error(e));
+    const ingredients = [...appData.compArr];
+    const ingredientIds = ingredients.map((ingredient) => ingredient.id);
+
+    //запрос
+    fetch("/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        price: appData.totalPrice,
+        email: "user@mail.ru",
+        components: JSON.stringify(ingredientIds),
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Ошибка ${res.status}`);
+        }
+      })
+      .then((data) => setOrderInfo(data))
+      .catch((e) => console.error(e));
 
     //включение модалки
     turnOn();

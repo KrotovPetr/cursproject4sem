@@ -49,26 +49,26 @@ const App = () => {
   //fetch запрос при отрисовке
   useEffect(() => {
     fetchData();
-    setState(data.cards);
+    // setState(data.cards);
   }, []);
 
   // функция получения json
   const fetchData = () => {
-    // fetch("/components", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/json;charset=utf-8",
-    //   },
-    // })
-    //   .then((res) => {
-    //     if (res.ok) {
-    //       return res.json();
-    //     } else {
-    //       return Promise.reject(`Ошибка ${res.status}`);
-    //     }
-    //   })
-    //   .then((data) => console.log(data))
-    //   .catch((e) => console.error(e));
+    fetch("/components", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Ошибка ${res.status}`);
+        }
+      })
+      .then((data) => setState(data))
+      .catch((e) => console.error(e));
   };
 
   return (

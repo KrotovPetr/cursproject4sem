@@ -11,7 +11,7 @@ const IngredientList = (props) => {
   return (
     <div className={cardStyle.cardArea}>
       {props.compList.map(
-        (cards, index) =>
+        (cards) =>
           props.typeOfMeal === cards.type && (
             <div key={cards["_id"]}>
               <div
@@ -25,7 +25,7 @@ const IngredientList = (props) => {
                   <Counter count={cards.count} size="default" />
                 )}
                 <img
-                  alt="Фото ингридиента"
+                  alt="Фото товара"
                   src={cards.image}
                   className={cardStyle.cardImage}
                 />

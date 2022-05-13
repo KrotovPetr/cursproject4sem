@@ -27,7 +27,7 @@
 .menu{
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #8484ac #2f2f37;
+    scrollbar-color: #241e36 #2f2f37;
 }
 
 /*цена*/
@@ -55,7 +55,7 @@
 
 /*декорация ползунка*/
 .menu::-webkit-scrollbar-thumb{
-    background: #8484ac;
+    background: #241e36;
 }
 
 
@@ -70,7 +70,7 @@
     composes:myFlex;
     width: 200px;
     height:60px;
-    background: #8383ab;
+    background: #241e36;
     cursor:pointer;
     border: 2px solid #ecedef;
     transition: 1s;
@@ -78,9 +78,9 @@
 
 .tabDiv:hover{
     background: #ecedef;
-    border: 2px solid #8282aa;
+    border: 2px solid #241e36;
     transition: 1s;
-    color: #8484ac;
+    color: #241e36;
 }
 
 

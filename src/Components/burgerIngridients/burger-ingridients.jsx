@@ -35,7 +35,7 @@ const BurgerIngridients = (props) => {
       </div>
       <section className={ingredientsBurger.menu}>
         {isActive && (
-          <Modal turnOff={turnOff} title={"Детали ингредиента"}>
+          <Modal turnOff={turnOff} title={"Характеристики товара"}>
             <IngredientDetails data={data} />
           </Modal>
         )}

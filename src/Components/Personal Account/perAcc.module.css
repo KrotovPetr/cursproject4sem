@@ -5,7 +5,7 @@
     align-items: center;
     height:95vh;
     width:100%;
-    background: #ecedef;
+    background: #ffffff;
 }
 
 .info{
@@ -70,7 +70,7 @@
     border-radius: 30px;
 }
 
-.orders> p{
+.orders > p{
     color:#2f2f37;
     font-size: 24px;
     font-weight: bold;
