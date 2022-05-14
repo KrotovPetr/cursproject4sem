@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useReducer, useState } from "react";
 import Header from "../header/header";
-import BurgerIngridients from "../burgerIngridients/burger-ingridients";
+import Goods from "../burgerIngridients/goods";
 import appStyles from "./app.module.css";
 import OrderConstructor from "../burgerConstructor/order-constructor";
 import { AppContext } from "../../Services/appContext";
@@ -76,7 +76,7 @@ const App = () => {
       <div className={appStyles.page}>
         <main className={appStyles.main}>
           <AppContext.Provider value={user}>
-            <BurgerIngridients
+            <Goods
               className={appStyles.burgerIngredients}
               compList={state.length > 0 ? state : []}
             />

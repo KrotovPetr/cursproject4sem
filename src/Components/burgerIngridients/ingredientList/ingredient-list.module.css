@@ -9,7 +9,7 @@
     composes: myFlex;
     flex-flow: row wrap;
     margin: 24px 0 0 16px;
-    column-gap: 24px;
+    column-gap: 20px;
     row-gap: 32px;
 }
 .card{
@@ -20,10 +20,11 @@
     align-items: center;
     row-gap:4px;
     width: 272px;
-    background: #cccccc;
+    background: #ffffff;
     border-radius: 10px;
     height: 250px;
     cursor: pointer;
+    box-shadow: 0.1em 0.1em 10px rgba(122,122,122,0.5);
 }
 
 

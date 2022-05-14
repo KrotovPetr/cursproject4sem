@@ -81,6 +81,33 @@
 .buttonDiv{
     padding: 0 40px 0 0;
 }
+.buttonDiv > button{
+    width:180px;
+    height:60px;
+    border-radius: 30px;
+    background: #241e36;
+    color: #cccccc;
+    cursor:pointer;
+    /*font-weight: bold;*/
+    font-size: 14px;
+    transition: 1s;
+}
+
+.buttonDiv > button:hover{
+
+    background: #ffffff;
+    color: #241e36;
+    border: 2px solid #241e36;
+    font-weight: bold;
+
+    transition: 1s;
+}
+
+.ruble{
+    color: #262629;
+    font-weight: bold;
+    font-size: 32px;
+}
 
 .headerText{
     font-family: 'JetBrains Mono', monospace;

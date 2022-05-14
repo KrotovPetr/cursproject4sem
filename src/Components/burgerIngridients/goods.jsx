@@ -1,48 +1,54 @@
 import React, { useEffect, useState } from "react";
-import ingredientsBurger from "./ingridients.module.css";
+import goodsStyle from "./goods.module.css";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientList from "./ingredientList/ingredient-list";
-import appStyles from "../app/app.module.css";
 import Modal from "../modal/modal";
 import PropTypes from "prop-types";
 import IngredientDetails from "../ingredientDetails/ingredient-details";
 
-const BurgerIngridients = (props) => {
+const Goods = (props) => {
   const [current, setCurrent] = useState("one");
   const [data, setData] = useState(null);
   const [isActive, setActive] = useState(false);
   const turnOff = () => {
     setActive(false);
   };
+
+  function clearInfo() {}
+
   const turnOn = () => {
     setActive(true);
   };
   return (
-    <div className={ingredientsBurger.constructor}>
-      <h1 className={ingredientsBurger.appText}>Соберите заказ</h1>
-      <div className={ingredientsBurger.tabArea}>
-        <div className={ingredientsBurger.tabDiv} onClick={setCurrent}>
+    <div className={goodsStyle.constructor}>
+      <h1 className={goodsStyle.appText}>Соберите заказ</h1>
+      <div className={goodsStyle.tabArea}>
+        <div className={goodsStyle.tabDiv} onClick={setCurrent}>
           Инструменты
         </div>
 
-        <div className={ingredientsBurger.tabDiv} onClick={setCurrent}>
+        <div className={goodsStyle.tabDiv} onClick={setCurrent}>
           Расходники
         </div>
 
-        <div className={ingredientsBurger.tabDiv} onClick={setCurrent}>
+        <div className={goodsStyle.tabDiv} onClick={setCurrent}>
           ГСМ
         </div>
       </div>
-      <section className={ingredientsBurger.menu}>
+      <section className={goodsStyle.menu}>
         {isActive && (
-          <Modal turnOff={turnOff} title={"Характеристики товара"}>
+          <Modal
+            turnOff={turnOff}
+            clearInfo={clearInfo}
+            title={"Характеристики товара"}
+          >
             <IngredientDetails data={data} />
           </Modal>
         )}
 
         <section>
-          <p className={ingredientsBurger.headerText}>Инструменты</p>
-          <div className={ingredientsBurger.cardList}>
+          <p className={goodsStyle.headerText}>Инструменты</p>
+          <div className={goodsStyle.cardList}>
             <IngredientList
               typeOfMeal="instrument"
               compList={props.compList}
@@ -52,8 +58,8 @@ const BurgerIngridients = (props) => {
           </div>
         </section>
         <section>
-          <p className={ingredientsBurger.headerText}>Расходники</p>
-          <div className={ingredientsBurger.cardList}>
+          <p className={goodsStyle.headerText}>Расходники</p>
+          <div className={goodsStyle.cardList}>
             <IngredientList
               typeOfMeal="component"
               compList={props.compList}
@@ -63,8 +69,8 @@ const BurgerIngridients = (props) => {
           </div>
         </section>
         <section>
-          <p className={ingredientsBurger.headerText}>ГСМ</p>
-          <div className={ingredientsBurger.cardList}>
+          <p className={goodsStyle.headerText}>ГСМ</p>
+          <div className={goodsStyle.cardList}>
             <IngredientList
               typeOfMeal="oil"
               compList={props.compList}
@@ -78,9 +84,9 @@ const BurgerIngridients = (props) => {
   );
 };
 
-// // Передаётся массив данных
-// Ingridients.propTypes = {
-//   compList: PropTypes.arrayOf(PropTypes.object).isRequired,
-// };
+// Передаётся массив данных
+Goods.propTypes = {
+  compList: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
-export default BurgerIngridients;
+export default Goods;

@@ -41,7 +41,7 @@ const Header = () => {
             width="30px"
             height="30px"
           />
-          <Link to="/perAcc" className={HeaderStyles.headerText}>
+          <Link to="/login" className={HeaderStyles.headerText}>
             Личный кабинет
           </Link>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import constructBurger from "../ingridients.module.css";
+import constructBurger from "../goods.module.css";
 import {
   Counter,
   CurrencyIcon,
@@ -11,9 +11,9 @@ const IngredientList = (props) => {
   return (
     <div className={cardStyle.cardArea}>
       {props.compList.map(
-        (cards) =>
+        (cards, index) =>
           props.typeOfMeal === cards.type && (
-            <div key={cards["_id"]}>
+            <div key={index}>
               <div
                 className={cardStyle.card}
                 onClick={(e) => {

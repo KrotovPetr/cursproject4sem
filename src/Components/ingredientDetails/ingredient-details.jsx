@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import ingredientStyles from "./ingredient-styles.module.css";
-import IngredientList from "../burgerIngridients/ingredientList/ingredient-list";
 import PropTypes from "prop-types";
 import { AppContext } from "../../Services/appContext";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+
 const IngredientDetails = (props) => {
   const app = useContext(AppContext);
   const createOrder = () => {

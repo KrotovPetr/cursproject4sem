@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Registration from "../Registration/Registration";
 import App from "../app/app";
 import formStyles from "./login.module.css";
@@ -66,8 +66,7 @@ const Login = () => {
             // checkUser();
           }}
         >
-          <Link className={formStyles.text} to="/home">
-            {" "}
+          <Link className={formStyles.text} to="/perAcc">
             Go!
           </Link>
         </button>

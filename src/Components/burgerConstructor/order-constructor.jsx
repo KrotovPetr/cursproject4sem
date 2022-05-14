@@ -17,46 +17,16 @@ const OrderConstructor = () => {
       ...appData.compArr.slice(index + 1, appData.compArr.length),
     ]);
   }
-
-  //подвязка к контексту
-  const appData = useContext(AppContext);
-
-  //состояние под ответ
-  const [orderInfo, setOrderInfo] = useState(null);
   const [numberOfOrder, setOrder] = useState(0);
-  //функция составления массива
-  const getOrder = () => {
-    const ingredients = [...appData.compArr];
-    const ingredientIds = ingredients.map((ingredient) => ingredient.id);
+
+  const openOrder = () => {
     setOrder(
       Math.floor(Math.random() * 10000) + Math.floor(Math.random() * 10000)
     );
-    //запрос
-    fetch("/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-      body: JSON.stringify({
-        price: appData.totalPrice,
-        email: "user@mail.ru",
-        components: JSON.stringify(ingredientIds),
-        number: numberOfOrder,
-      }),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка ${res.status}`);
-        }
-      })
-      .then((data) => setOrderInfo(data))
-      .catch((e) => console.error(e));
-
-    //включение модалки
     turnOn();
   };
+  //подвязка к контексту
+  const appData = useContext(AppContext);
 
   //состояние модального окна
   const [isActive, setActive] = useState(false);
@@ -82,7 +52,13 @@ const OrderConstructor = () => {
           {/*Блок формирования центральной части бургера*/}
           {isActive && (
             <Modal turnOff={turnOff} clearInfo={clearInfo}>
-              <OrderDetails numberOrder={numberOfOrder} />
+              <OrderDetails
+                turnOff={turnOff}
+                clearInfo={clearInfo}
+                numberOfOrder={numberOfOrder}
+                compArr={appData.compArr}
+                totalPrice={appData.totalPrice}
+              />
             </Modal>
           )}
           {appData.compArr.length > 0 &&
@@ -111,20 +87,13 @@ const OrderConstructor = () => {
         {/*Блок цены*/}
         <div className={constStyles.price}>
           <div className={constStyles.priceArea}>
-            <p className="text text_type_digits-medium text_color_inactive">
-              {appData.totalPrice}
-            </p>
-            <CurrencyIcon type="secondary" />
+            <p className={constStyles.ruble}>{appData.totalPrice}</p>
+            <p className={constStyles.ruble}>&#x20bd;</p>
           </div>
           <div className={constStyles.buttonDiv}>
-            <Button
-              type="primary"
-              size="large"
-              onClick={getOrder}
-              disabled={appData.compArr.length === 0}
-            >
+            <button onClick={openOrder} disabled={appData.compArr.length === 0}>
               Оформить заказ
-            </Button>
+            </button>
           </div>
         </div>
         {/*Конец блока цены*/}

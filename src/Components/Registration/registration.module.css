@@ -7,6 +7,8 @@
     width:100%;
     background: #ffffff;
 }
+
+
 .formArea{
     display: flex;
     flex-flow: column wrap;
