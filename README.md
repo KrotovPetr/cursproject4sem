@@ -1,46 +1,24 @@
-# Getting Started with Create React App
+# Клиентская часть курсовой работы
+## Создание приложения строительного магазина "Самоделкин".
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+В данном репозитории представлена одна из двух частей разработанного приложения строительного магазина "Самоделкин". Клиентская часть преимущественно написана на языке JavaScript. Был использован фреймворк React, который для отрисовки компонентов в единый корень использует дерево JSX разметки. За правило описания и отрисовки стилей отвечает CSS. За формирование страницы отвечает HTML.
 
-## Available Scripts
+#### Пример CSS
+![image](https://user-images.githubusercontent.com/83280920/168468352-66165a55-1b4d-4023-b301-6bd0e5e44222.png)
 
-In the project directory, you can run:
+#### Пример JSX разметки из домашней страницы
+![image](https://user-images.githubusercontent.com/83280920/168468433-1e2e626f-a1a5-4754-9b51-ef11fcdd2e06.png)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Взаимодействие
+Для взаимодействия с серверной частью приложения используются Fetch API запросы формата GET и POST. GET запросы получают информацию с сервера, которая изначально лежит в базе данных, затем по необходимости отрисовывает или использует.
+#### Пример запроса к серверу
+![image](https://user-images.githubusercontent.com/83280920/168468562-3c305b20-005f-4b6c-84a2-8989bbc7dbe6.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+Чтобы открыть полный функционал приложения, пользователю необходимо авторизоваться, только после этого функционал приложения станет доступен в полном объёме:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1) Возможность оформления заказа
+2) Просмотр уже созданных заказов
+3) Просмотр товаров и информации о них
+и т.д.
