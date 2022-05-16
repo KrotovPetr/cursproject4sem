@@ -1,41 +1,48 @@
 import React, { useContext, useEffect } from "react";
 import ingredientStyles from "./ingredient-styles.module.css";
-import PropTypes from "prop-types";
-import { AppContext } from "../../Services/appContext";
 import { Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { useDispatch, useSelector } from "react-redux";
+import { addGood, setActive } from "../../Services/Actions/actions";
+import { CLEAR_CARD } from "../../Services/Reducers/components";
 
-const IngredientDetails = (props) => {
-  const app = useContext(AppContext);
+const IngredientDetails = () => {
+  const dispatch = useDispatch();
+  const { cardData } = useSelector((store) => ({
+    cardData: store.component.cardData,
+  }));
+
   const createOrder = () => {
-    app.setOrder(props.data);
+    dispatch(addGood(cardData));
+    dispatch(setActive(false));
+    dispatch({ type: CLEAR_CARD });
   };
   return (
     <div className={ingredientStyles.main}>
       {/*блок с картинкой*/}
       <img
-        src={props.data.image}
-        alt={props.data.name}
+        src={cardData.image}
+        alt={cardData.name}
         className={ingredientStyles.imageDiv}
       />
 
       {/*описание ингридиента*/}
-      <h2 className={ingredientStyles.headerText}>{props.data.name}</h2>
+      <h2 className={ingredientStyles.headerText}>{cardData.name}</h2>
       <div className={ingredientStyles.descriptionDiv}>
         <div className={ingredientStyles.subDescription}>
           <p className={ingredientStyles.appText}>Производитель</p>
-          <p className={ingredientStyles.appText}>{props.data.company}</p>
+          <p className={ingredientStyles.appText}>{cardData.company}</p>
         </div>
         <div className={ingredientStyles.subDescription}>
           <p className={ingredientStyles.appText}>Количество</p>
-          <p className={ingredientStyles.appText}>{props.data.amount}</p>
+          <p className={ingredientStyles.appText}>{cardData.amount}</p>
         </div>
         <div className={ingredientStyles.subDescription}>
           <p className={ingredientStyles.appText}>Стоимость</p>
-          <p className={ingredientStyles.appText}>{props.data.price}</p>
+          <p className={ingredientStyles.appText}>{cardData.price}</p>
         </div>
         <div className={ingredientStyles.subDescription}>
           <p className={ingredientStyles.appText}>Вес</p>
-          <p className={ingredientStyles.appText}>{props.data.weight}</p>
+          <p className={ingredientStyles.appText}>{cardData.weight}</p>
         </div>
       </div>
       <Button onClick={createOrder} type="primary" size="small">
@@ -45,7 +52,4 @@ const IngredientDetails = (props) => {
   );
 };
 
-IngredientDetails.propTypes = {
-  data: PropTypes.object.isRequired,
-};
 export default IngredientDetails;

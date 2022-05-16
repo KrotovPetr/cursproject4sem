@@ -5,88 +5,57 @@ import IngredientList from "./ingredientList/ingredient-list";
 import Modal from "../modal/modal";
 import PropTypes from "prop-types";
 import IngredientDetails from "../ingredientDetails/ingredient-details";
+import { shallowEqual, useSelector } from "react-redux";
 
-const Goods = (props) => {
-  const [current, setCurrent] = useState("one");
-  const [data, setData] = useState(null);
-  const [isActive, setActive] = useState(false);
-  const turnOff = () => {
-    setActive(false);
-  };
+const Goods = () => {
+  const { isActive, cardData, data, number } = useSelector(
+    (store) => ({
+      data: store.component.data,
+      isActive: store.component.isActiv,
+      cardData: store.component.cardData,
+      number: store.component.number,
+    }),
+    shallowEqual
+  );
 
-  function clearInfo() {}
-
-  const turnOn = () => {
-    setActive(true);
-  };
   return (
     <div className={goodsStyle.constructor}>
       <h1 className={goodsStyle.appText}>Соберите заказ</h1>
       <div className={goodsStyle.tabArea}>
-        <div className={goodsStyle.tabDiv} onClick={setCurrent}>
-          Инструменты
-        </div>
+        <div className={goodsStyle.tabDiv}>Инструменты</div>
 
-        <div className={goodsStyle.tabDiv} onClick={setCurrent}>
-          Расходники
-        </div>
+        <div className={goodsStyle.tabDiv}>Расходники</div>
 
-        <div className={goodsStyle.tabDiv} onClick={setCurrent}>
-          ГСМ
-        </div>
+        <div className={goodsStyle.tabDiv}>ГСМ</div>
       </div>
       <section className={goodsStyle.menu}>
-        {isActive && (
-          <Modal
-            turnOff={turnOff}
-            clearInfo={clearInfo}
-            title={"Характеристики товара"}
-          >
-            <IngredientDetails data={data} />
+        {isActive && cardData && number === -1 && (
+          <Modal title={"Характеристики товара"}>
+            <IngredientDetails />
           </Modal>
         )}
 
         <section>
           <p className={goodsStyle.headerText}>Инструменты</p>
           <div className={goodsStyle.cardList}>
-            <IngredientList
-              typeOfMeal="instrument"
-              compList={props.compList}
-              turnOn={turnOn}
-              setData={setData}
-            />
+            <IngredientList typeOfMeal="instrument" compList={data} />
           </div>
         </section>
         <section>
           <p className={goodsStyle.headerText}>Расходники</p>
           <div className={goodsStyle.cardList}>
-            <IngredientList
-              typeOfMeal="component"
-              compList={props.compList}
-              turnOn={turnOn}
-              setData={setData}
-            />
+            <IngredientList typeOfMeal="component" compList={data} />
           </div>
         </section>
         <section>
           <p className={goodsStyle.headerText}>ГСМ</p>
           <div className={goodsStyle.cardList}>
-            <IngredientList
-              typeOfMeal="oil"
-              compList={props.compList}
-              turnOn={turnOn}
-              setData={setData}
-            />
+            <IngredientList typeOfMeal="oil" compList={data} />
           </div>
         </section>
       </section>
     </div>
   );
-};
-
-// Передаётся массив данных
-Goods.propTypes = {
-  compList: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Goods;

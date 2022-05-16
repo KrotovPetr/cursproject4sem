@@ -9,60 +9,96 @@ import {
 import Modal from "../modal/modal";
 import { AppContext } from "../../Services/appContext";
 import OrderDetails from "../orderDetails/order-details";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { changeOrder, setActive } from "../../Services/Actions/actions";
+import {
+  ORDER_URL_ERROR,
+  ORDER_URL_REQUEST,
+  ORDER_URL_SUCCESS,
+  SET_NUMBER,
+} from "../../Services/Reducers/components";
 
 const OrderConstructor = () => {
-  function changeOrder(index) {
-    appData.setComponent([
-      ...appData.compArr.slice(0, index),
-      ...appData.compArr.slice(index + 1, appData.compArr.length),
-    ]);
-  }
-  const [numberOfOrder, setOrder] = useState(0);
+  const dispatch = useDispatch();
+  const {
+    isActive,
+    orderInfo,
+    data,
+    accessToken,
+    valueLogin,
+    orderSuccess,
+    number,
+  } = useSelector(
+    (store) => ({
+      data: store.component.data,
+      isActive: store.component.isActiv,
+      orderInfo: store.component.orderInfo,
+      accessToken: store.component.accessToken,
+      valueLogin: store.component.valueLogin,
+      orderSuccess: store.component.orderSuccess,
+      number: store.component.number,
+    }),
+    shallowEqual
+  );
 
-  const openOrder = () => {
-    setOrder(
-      Math.floor(Math.random() * 10000) + Math.floor(Math.random() * 10000)
-    );
-    turnOn();
+  const sendOrder = () => {
+    const ingredients = [...orderInfo];
+    const ingredientIds = ingredients.map((ingredient) => ingredient.id);
+    const number =
+      Math.floor(Math.random() * 10000) + Math.floor(Math.random() * 10000);
+    dispatch({
+      type: SET_NUMBER,
+      data: number,
+    });
+    //запрос
+    number !== -1 &&
+      dispatch({
+        type: ORDER_URL_REQUEST,
+      });
+    fetch("/order", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+        "Content-Type": "application/json;charset=utf-8",
+      },
+      body: JSON.stringify({
+        price: appData.totalPrice,
+        email: valueLogin,
+        components: JSON.stringify(ingredientIds),
+        number: number,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          dispatch({
+            type: ORDER_URL_SUCCESS,
+          });
+          return res.json();
+        } else {
+          dispatch({
+            type: ORDER_URL_ERROR,
+          });
+          return Promise.reject(`Ошибка ${res.status}`);
+        }
+      })
+      .catch((e) => console.error(e));
+    dispatch(setActive(true));
   };
+
   //подвязка к контексту
   const appData = useContext(AppContext);
-
-  //состояние модального окна
-  const [isActive, setActive] = useState(false);
-
-  //выключение модального окна
-  const turnOff = () => {
-    setActive(false);
-  };
-
-  //включение модального окна
-  const turnOn = () => {
-    setActive(true);
-  };
-
-  function clearInfo() {
-    appData.setComponent([]);
-  }
 
   return (
     <div className={constStyles.area}>
       <div className={constStyles.orderArea}>
         <div className={constStyles.order}>
-          {/*Блок формирования центральной части бургера*/}
-          {isActive && (
-            <Modal turnOff={turnOff} clearInfo={clearInfo}>
-              <OrderDetails
-                turnOff={turnOff}
-                clearInfo={clearInfo}
-                numberOfOrder={numberOfOrder}
-                compArr={appData.compArr}
-                totalPrice={appData.totalPrice}
-              />
+          {isActive && orderSuccess && number !== -1 && (
+            <Modal>
+              <OrderDetails />
             </Modal>
           )}
-          {appData.compArr.length > 0 &&
-            appData.compArr.map((cards, index) => (
+          {orderInfo.length > 0 &&
+            orderInfo.map((cards, index) => (
               <div className={constStyles.position} key={index}>
                 <div className={constStyles.dragClass}>
                   <DragIcon type="secondary" />
@@ -76,22 +112,21 @@ const OrderConstructor = () => {
                   />
 
                   <p className={constStyles.headerText}>{cards.name}</p>
-                  <div onClick={(e) => changeOrder(index)}>
+                  <div onClick={(e) => dispatch(changeOrder(index, data))}>
                     <DeleteIcon type="secondary" />
                   </div>
                 </div>
               </div>
             ))}
-          {/*Конец блока части формирования центральной части*/}
         </div>
-        {/*Блок цены*/}
+
         <div className={constStyles.price}>
           <div className={constStyles.priceArea}>
             <p className={constStyles.ruble}>{appData.totalPrice}</p>
             <p className={constStyles.ruble}>&#x20bd;</p>
           </div>
           <div className={constStyles.buttonDiv}>
-            <button onClick={openOrder} disabled={appData.compArr.length === 0}>
+            <button onClick={sendOrder} disabled={orderInfo.length === 0}>
               Оформить заказ
             </button>
           </div>
@@ -101,7 +136,5 @@ const OrderConstructor = () => {
     </div>
   );
 };
-
-//propTypes - нету
 
 export default OrderConstructor;

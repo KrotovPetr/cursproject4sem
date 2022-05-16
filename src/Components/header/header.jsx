@@ -11,8 +11,8 @@ const Header = () => {
         {/*зона левых кнопок*/}
         <div className={HeaderStyles.btnArea}>
           <div className={HeaderStyles.constructor}>
-            <Link to="/registration" className={HeaderStyles.headerText}>
-              Регистрация
+            <Link to="/login" className={HeaderStyles.headerText}>
+              Войти
             </Link>
           </div>
           <div className={HeaderStyles.orderList}>
@@ -41,7 +41,7 @@ const Header = () => {
             width="30px"
             height="30px"
           />
-          <Link to="/login" className={HeaderStyles.headerText}>
+          <Link to="/perAcc" className={HeaderStyles.headerText}>
             Личный кабинет
           </Link>
         </div>

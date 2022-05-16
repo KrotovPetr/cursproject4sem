@@ -5,71 +5,47 @@ import appStyles from "./app.module.css";
 import OrderConstructor from "../burgerConstructor/order-constructor";
 import { AppContext } from "../../Services/appContext";
 import Data from "../../utils/data";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { fetchData } from "../../Services/Actions/actions";
 
 const App = () => {
-  // ccылка
-  const refURL = "https://norma.nomoreparties.space/api/ingredients";
+  const { data, accessToken, orderInfo } = useSelector(
+    (store) => ({
+      data: store.component.data,
+      accessToken: store.component.accessToken,
+      orderInfo: store.component.orderInfo,
+    }),
+    shallowEqual
+  );
 
-  //массив всех компонентов
-  const [state, setState] = useState([]);
-
-  //состояние заказа
-  const [components, setComponents] = useState([]);
-
-  //внесение изменений в заказ
-  const changeOrder = (card) => {
-    setComponents([...components, card]);
-  };
+  const dispatch = useDispatch();
 
   //подсчёт итоговой суммы
   const totalPrice = useMemo(() => {
-    if (components.length === 0) {
+    if (orderInfo.length === 0) {
       return 0;
     } else {
       let price = 0;
-      components.map((ingredient) => {
+      orderInfo.map((ingredient) => {
         price += ingredient.price;
       });
       return price;
     }
-  }, [components]);
+  }, [orderInfo]);
 
   //взаимодействие с контекстом
   const user = useMemo(() => {
     const obj = {
-      compArr: components,
+      compArr: orderInfo,
       totalPrice: totalPrice,
-      setOrder: changeOrder,
-      setComponent: setComponents,
     };
     return obj;
-  }, [components]);
+  }, [orderInfo]);
 
-  const data = Data();
   //fetch запрос при отрисовке
   useEffect(() => {
-    fetchData();
-    // setState(data.cards);
+    dispatch(fetchData(accessToken));
   }, []);
-
-  // функция получения json
-  const fetchData = () => {
-    fetch("/components", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json;charset=utf-8",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Ошибка ${res.status}`);
-        }
-      })
-      .then((data) => setState(data))
-      .catch((e) => console.error(e));
-  };
 
   return (
     <>
@@ -78,7 +54,7 @@ const App = () => {
           <AppContext.Provider value={user}>
             <Goods
               className={appStyles.burgerIngredients}
-              compList={state.length > 0 ? state : []}
+              compList={data.length > 0 ? data : []}
             />
             <OrderConstructor />
           </AppContext.Provider>

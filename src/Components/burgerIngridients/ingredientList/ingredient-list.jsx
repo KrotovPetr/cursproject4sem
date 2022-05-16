@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import constructBurger from "../goods.module.css";
-import {
-  Counter,
-  CurrencyIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { Counter } from "@ya.praktikum/react-developer-burger-ui-components";
 import cardStyle from "./ingredient-list.module.css";
-import PropTypes from "prop-types";
+import { setActive, setData } from "../../../Services/Actions/actions";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 
 const IngredientList = (props) => {
+  const dispatch = useDispatch();
+  const { data } = useSelector(
+    (store) => ({
+      data: store.component.data,
+    }),
+    shallowEqual
+  );
   return (
     <div className={cardStyle.cardArea}>
-      {props.compList.map(
+      {data.map(
         (cards, index) =>
           props.typeOfMeal === cards.type && (
             <div key={index}>
               <div
                 className={cardStyle.card}
                 onClick={(e) => {
-                  props.setData(cards);
-                  props.turnOn();
+                  dispatch(setData(cards));
+                  dispatch(setActive(true));
                 }}
               >
                 {cards.count !== 0 && (

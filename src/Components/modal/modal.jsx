@@ -4,19 +4,23 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modalOverlay/modal-overlay";
 import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
+import { useDispatch } from "react-redux";
+import { clearInfo, setActive } from "../../Services/Actions/actions";
 
 const Modal = (props) => {
   const refRoot = document.getElementById("modal");
 
+  const dispatch = useDispatch();
+
   function closeModal() {
-    props.turnOff();
-    props.title !== "" && props.clearInfo();
+    dispatch(setActive(false));
+    dispatch(clearInfo());
   }
 
   useEffect(() => {
     const closeByEscape = (e) => {
       if (e.key === "Escape") {
-        props.turnOff();
+        dispatch(setActive(false));
       }
     };
 
@@ -39,7 +43,7 @@ const Modal = (props) => {
         </div>
         {props.children}
       </div>
-      <ModalOverlay turnOff={props.turnOff} />
+      <ModalOverlay />
     </div>,
     refRoot
   );
@@ -48,7 +52,6 @@ const Modal = (props) => {
 // Передаются функция выключения, заголовок, children
 
 Modal.propTypes = {
-  turnOff: PropTypes.func.isRequired,
   title: PropTypes.string,
   children: PropTypes.element.isRequired,
 };
