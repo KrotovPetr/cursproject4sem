@@ -1,0 +1,29 @@
+.contentContainer {
+    background: #020202;
+    width:100%;
+    height: 44px;
+
+    .infoContainer {
+        width:1400px;
+        height:100%;
+        display:flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+
+        .address{
+            width:100px;
+            background: white;
+        }
+
+        .contacts{
+            width:100px;
+            background: white;
+        }
+
+        .shedule{
+            width:100px;
+            background: white;
+        }
+    }
+}
