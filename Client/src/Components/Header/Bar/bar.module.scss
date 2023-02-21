@@ -1,0 +1,44 @@
+.mainContainer{
+  width:1000px;
+  height:100%;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .Logo{
+    width:80px;
+    height:80px;
+    background: #020202;
+  }
+
+  .activePoint, .point{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    height:40px;
+    font-weight: 600;
+    width:fit-content;
+    padding: 0 20px 0 20px;
+    transition: 0.5s;
+
+  }
+
+  .point{
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+  }
+
+  .point:hover{
+      transform: scale(1.1, 1.1);
+      transition: 0.5s;
+  }
+
+  .activePoint {
+    color: #0156fe;
+    border: 2px solid #0156fe;
+    border-radius: 20px;
+  }
+
+}

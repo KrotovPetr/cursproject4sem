@@ -1,10 +1,11 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import Slider from "../../Components/Slider/Slider";
+import styles from "./home.module.scss"
 
 const Home = () => {
     return (
-        <div>
-            <Link to={`/login`}>Your Name</Link>
+        <div className={styles.homePage}>
+           <Slider/>
         </div>
     );
 };

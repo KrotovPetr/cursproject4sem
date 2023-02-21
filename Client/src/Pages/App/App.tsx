@@ -3,11 +3,13 @@ import {BrowserRouter,  Route,  Routes} from "react-router-dom";
 import Home from "../Home/Home";
 import Header from "../../Components/Header/Header";
 import LoginPage from "../Login/LoginPage";
+import "../../Styles/_commonStyles.module.scss";
+import Footer from "../../Components/Footer/Footer";
 
 const App: FC = () => {
 
     return (
-        <div>
+        <div >
            <Header/>
             <BrowserRouter>
                 <Routes>
@@ -15,6 +17,7 @@ const App: FC = () => {
                     <Route path="login" element={<LoginPage />} />
                 </Routes>
             </BrowserRouter>
+            <Footer/>
         </div>
     );
 };
