@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styles from "./footer.module.scss"
-import InputFooter from "../Input/InputFooter";
+import InputFooter from "./FooterInput/InputFooter";
 import Button from "../Button/Button";
 import FooterBlock from "./FooterBlock/FooterBlock";
 import data from "../../Utils/Data/fakeData";

@@ -10,7 +10,6 @@ const Home = () => {
            <Slider/>
             {/*<Menu/>*/}
             <FeedBackSlider/>
-            <Options/>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import Header from "../../Components/Header/Header";
 import LoginPage from "../Login/LoginPage";
 import "../../Styles/_commonStyles.module.scss";
 import Footer from "../../Components/Footer/Footer";
+import Options from "../../Components/Options/Options";
 
 const App: FC = () => {
 
@@ -17,6 +18,7 @@ const App: FC = () => {
                     <Route path="login" element={<LoginPage />} />
                 </Routes>
             </BrowserRouter>
+            <Options/>
             <Footer/>
         </div>
     );
