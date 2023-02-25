@@ -1,41 +1,41 @@
-.footer{
+.footer {
     height: 490px;
-    width:100%;
+    width: 100%;
     background: #020203;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
 
-    .topLevel{
-        width:1400px;
-        height:80px;
+    .topLevel {
+        width: 1400px;
+        height: 80px;
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         align-items: center;
         margin: 47px 0 0 0;
 
-        .words{
-            color: #FFFFFF;
+        .words {
+            color: #ffffff;
             display: flex;
             flex-flow: column nowrap;
             justify-content: space-between;
             align-items: flex-start;
             flex: 1 1 auto;
 
-            .wordsHeader{
+            .wordsHeader {
                 font-size: 38px;
-                margin:0 0 10px 0;
+                margin: 0 0 10px 0;
             }
 
-            .wordsMini{
+            .wordsMini {
                 font-size: 16px;
                 font-weight: 300;
             }
         }
 
-        .emailSendForm{
+        .emailSendForm {
             display: flex;
             flex-flow: row nowrap;
             justify-content: flex-end;
@@ -43,15 +43,14 @@
             flex: 1 1 auto;
             column-gap: 20px;
 
-            .butField{
-                width:150px;
-                height:50px;
+            .butField {
+                width: 150px;
+                height: 50px;
             }
         }
-
     }
 
-    .descriptions{
+    .descriptions {
         width: 1400px;
         display: flex;
         flex-flow: row nowrap;
@@ -60,42 +59,42 @@
         margin: 50px 0 0 0;
     }
 
-    .line{
-        width:1400px;
-        color:#FFFFFF;
+    .line {
+        width: 1400px;
+        color: #ffffff;
         opacity: 0.2;
         margin: 30px 0 0 0;
     }
 
-    .contacts{
-        width:1400px;
+    .contacts {
+        width: 1400px;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
-        margin:10px 0 0 0;
+        margin: 10px 0 0 0;
 
-         .icons {
-             display: flex;
-             flex-flow: row nowrap;
-             justify-content: center;
-             align-items: center;
-             column-gap: 7px;
+        .icons {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: center;
+            align-items: center;
+            column-gap: 7px;
 
-             .icon{
-                 width:25px;
-                 height:25px;
-                 background: #FFFFFF;
-                 border-radius: 50%;
-                 opacity: 0.5;
-                 cursor:pointer;
-             }
-         }
+            .icon {
+                width: 25px;
+                height: 25px;
+                background: #ffffff;
+                border-radius: 50%;
+                opacity: 0.5;
+                cursor: pointer;
+            }
+        }
 
-        .pText{
+        .pText {
             font-size: 12px;
             font-weight: 300;
-            color: #FFFFFF;
+            color: #ffffff;
             opacity: 0.5;
         }
     }

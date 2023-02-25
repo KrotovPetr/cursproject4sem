@@ -1,22 +1,22 @@
-.inputElem{
-  display: flex;
-  flex-flow: column nowrap;
+.inputElem {
+    display: flex;
+    flex-flow: column nowrap;
 
-  .label{
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 0 10px 0;
+    .label {
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px 0 10px 0;
 
-    .labelSpan{
-      padding: 0 0 0 5px;
-      color: #c84d3f;
+        .labelSpan {
+            padding: 0 0 0 5px;
+            color: #c84d3f;
+        }
     }
-  }
 
-  .input{
-      width:440px;
-      height:50px;
-      padding: 0 0 0 10px;
-    border: 1px solid #a1a5af;
-  }
+    .input {
+        width: 440px;
+        height: 50px;
+        padding: 0 0 0 10px;
+        border: 1px solid #a1a5af;
+    }
 }

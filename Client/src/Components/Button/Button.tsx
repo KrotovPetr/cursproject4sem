@@ -1,11 +1,9 @@
-import React, {FC} from 'react';
-import styles from "./button.module.scss";
-
+import React, { FC } from 'react';
+import styles from './button.module.scss';
 
 type TButton = {
-    butContent: string
-}
-
+    butContent: string;
+};
 
 const Button: FC<TButton> = (props) => {
     return (

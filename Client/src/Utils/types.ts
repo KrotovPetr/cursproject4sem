@@ -1,4 +1,4 @@
 export type TContent = {
-    name: String,
-    ref: String
-}
+    name: String;
+    ref: String;
+};

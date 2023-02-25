@@ -1,38 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@500&display=swap');
 
-.inputGroup{
-  position:relative;
-  font-family: 'Alegreya Sans SC', sans-serif;
+.inputGroup {
+    position: relative;
+    font-family: 'Alegreya Sans SC', sans-serif;
 }
 
 .inputGroup .label {
-  padding:0 10px;
-  background-color:#020203;
-  color: #fff;
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  text-transform: capitalize;
-  pointer-events: none;
-  font-size:14px;
-  transition: all 0.3s;
+    padding: 0 10px;
+    background-color: #020203;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    text-transform: capitalize;
+    pointer-events: none;
+    font-size: 14px;
+    transition: all 0.3s;
 }
 
 .inputGroup .input {
-  padding:18px 15px;
-  width:400px;
-  border: 2px solid #fff;
-  outline: none;
-  color: #fff;
-  font-size: 14px;
-  font-family:inherit;
-  background-color: transparent;
-  border-radius:4px;
+    padding: 18px 15px;
+    width: 400px;
+    border: 2px solid #fff;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    font-family: inherit;
+    background-color: transparent;
+    border-radius: 4px;
 }
 
 .inputGroup .input:focus + .label,
 .inputGroup .input:not(:placeholder-shown) + .label {
-  top:0;
-  font-size:14px;
+    top: 0;
+    font-size: 14px;
 }

@@ -1,24 +1,24 @@
-.block{
-    height:fit-content;
+.block {
+    height: fit-content;
     width: fit-content;
     max-width: 250px;
     max-height: 260px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
-    align-items: flex-start ;
+    align-items: flex-start;
 
-  .header{
-    color: #FFFFFF;
-    opacity: 0.5;
-    font-size: 14px;
-    margin: 0 0 15px 0;
-  }
+    .header {
+        color: #ffffff;
+        opacity: 0.5;
+        font-size: 14px;
+        margin: 0 0 15px 0;
+    }
 
-  .link{
-    color: #FFFFFF;
-    font-size: 13px;
-    padding:2px;
-    font-weight: 300;
-  }
+    .link {
+        color: #ffffff;
+        font-size: 13px;
+        padding: 2px;
+        font-weight: 300;
+    }
 }

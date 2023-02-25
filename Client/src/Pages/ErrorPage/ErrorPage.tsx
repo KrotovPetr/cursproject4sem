@@ -1,11 +1,7 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 
-const ErrorPage:FC = () => {
-    return (
-        <div>
-
-        </div>
-    );
+const ErrorPage: FC = () => {
+    return <div></div>;
 };
 
 export default ErrorPage;
