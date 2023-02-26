@@ -8,6 +8,7 @@ import Footer from '../../Components/Footer/Footer';
 import Options from '../../Components/Options/Options';
 import AboutPage from '../AboutPage/AboutPage';
 import RegistrationPage from '../Registration/RegistrationPage';
+import AccountPage from "../AccountPage/AccountPage";
 
 const App: FC = () => {
     return (
@@ -19,6 +20,7 @@ const App: FC = () => {
                     <Route path="login" element={<LoginPage />} />
                     <Route path="about" element={<AboutPage />} />
                     <Route path="registration" element={<RegistrationPage />} />
+                    <Route path="account" element={<AccountPage />} />
                 </Routes>
             </BrowserRouter>
             <Options />

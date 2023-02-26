@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styles from './bar.module.scss';
+import Logo from '../../../Utils/Images/logo2.png';
 const Bar = () => {
     const [activePoint, setActive] = useState<number>(0);
     return (
         <div className={styles.mainContainer}>
-            <div className={styles.Logo}></div>
+            <img className={styles.Logo} src={Logo}></img>
             <div
                 className={
                     activePoint === 0 ? styles.activePoint : styles.point

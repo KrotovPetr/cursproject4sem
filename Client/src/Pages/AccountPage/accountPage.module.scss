@@ -1,0 +1,31 @@
+.accountPage{
+    width: 100%;
+    height:fit-content;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    .content{
+        width:1400px;
+        height: fit-content;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column nowrap;
+        row-gap: 15px;
+
+        .breadCrumbs {
+            width: 1400px;
+            height: 18px;
+            background: #a1a5af;
+            opacity: 0.3;
+        }
+
+        .h1Text{
+            align-self: flex-start;
+            font-size: 32px;
+
+        }
+    }
+
+}
