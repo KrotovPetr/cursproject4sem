@@ -1,4 +1,4 @@
-import { TContent } from '../types';
+import { TContent } from '../Types/types';
 
 const data: TContent[] = [
     { name: 'About Us', ref: '.' },

@@ -1,0 +1,87 @@
+.cardBody {
+  width:250px;
+  height:350px;
+  display:flex;
+  flex-flow: column nowrap;
+  justify-self: center;
+  align-items: center;
+  row-gap: 15px;
+  box-sizing: border-box;
+  cursor:pointer;
+
+  .statusInStock {
+    width:fit-content;
+    height:fit-content;
+    display:flex;
+    align-self: flex-start;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 10px;
+    padding: 5px 0 0 25px ;
+    color: #78a862;
+    font-size: 10px;
+
+    .iconBackgroundEmpty, .iconBackgroundInStock{
+      width:10px;
+      height:10px;
+      border-radius: 50%;
+    }
+    .iconBackgroundInStock{
+      background: #78a862;
+
+    }
+    .iconBackgroundEmpty{
+      background: #c94d3f;
+    }
+  }
+
+
+  .cardPicture{
+    height: 150px;
+    width: 150px;
+  }
+
+  .feedbackContainer{
+    display:flex;
+    align-self: flex-start;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    width:100%;
+    align-items: center;
+
+    .stars{
+        width: 75px;
+        height: 15px;
+      background: #a1a5af;
+    }
+
+    .reviews{
+      font-size: 12px;
+      color: #a1a5af;
+      font-weight: 400;
+      cursor:pointer;
+    }
+
+  }
+
+  .productName{
+    width:185px;
+    height:65px;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    color:#000000;
+    line-height: 1.5;
+  }
+
+  .productPrice{
+    align-self: flex-start;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 0 0 25px;
+
+  }
+}
+

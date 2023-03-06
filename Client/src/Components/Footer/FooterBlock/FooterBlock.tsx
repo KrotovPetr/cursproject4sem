@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { TContent } from '../../../Utils/types';
+import { TContent } from '../../../Utils/Types/types';
 import styles from './footerBlock.module.scss';
 import { v4 as uuidv4 } from 'uuid';
 

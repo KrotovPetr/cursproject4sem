@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './bar.module.scss';
 import Logo from '../../../Utils/Images/logo2.png';
+import {Link, NavLink} from "react-router-dom";
 const Bar = () => {
     const [activePoint, setActive] = useState<number>(0);
     return (
@@ -14,7 +15,7 @@ const Bar = () => {
                     setActive(0);
                 }}
             >
-                Инструменты
+                <NavLink to="/tools" className={styles.link}>Tools</NavLink>
             </div>
             <div
                 className={
@@ -24,7 +25,7 @@ const Bar = () => {
                     setActive(1);
                 }}
             >
-                Расходники
+                <NavLink to="/supplies" className={styles.link}>Supplies</NavLink>
             </div>
             <div
                 className={
@@ -34,7 +35,7 @@ const Bar = () => {
                     setActive(2);
                 }}
             >
-                Ремонт
+                <NavLink to="/service" className={styles.link}>Service</NavLink>
             </div>
             <div
                 className={
@@ -44,7 +45,7 @@ const Bar = () => {
                     setActive(3);
                 }}
             >
-                Аренда
+                <NavLink to="/rent" className={styles.link}>Rent</NavLink>
             </div>
             <div
                 className={
@@ -54,7 +55,7 @@ const Bar = () => {
                     setActive(4);
                 }}
             >
-                Предложения
+                <NavLink to="/" className={styles.link}>Our deals</NavLink>
             </div>
         </div>
     );

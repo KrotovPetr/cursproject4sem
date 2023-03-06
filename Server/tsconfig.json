@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "esNext",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+  }
+}

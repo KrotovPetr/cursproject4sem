@@ -1,0 +1,35 @@
+.productsList {
+    width:1400px;
+    height: fit-content;
+    overflow: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    row-gap: 20px;
+
+  .categoryHeader{
+      font-size: 22px;
+      font-weight: bold;
+  }
+
+  .productsContainer {
+    column-gap: 20px;
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: fit-content;
+    height: 100%;
+    list-style: none;
+    margin: 10px 0 0 0;
+
+  }
+
+
+}
+
+//.productsList::-webkit-scrollbar {
+//  width: 0;
+//}

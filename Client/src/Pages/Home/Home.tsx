@@ -1,15 +1,17 @@
 import React from 'react';
+import FeedBackSlider from '../../Components/Sliders/FeedBackSlider/FeedBackSlider';
 import Slider from '../../Components/Sliders/Slider/Slider';
 import styles from './home.module.scss';
-import Options from '../../Components/Options/Options';
-import FeedBackSlider from '../../Components/Sliders/FeedBackSlider/FeedBackSlider';
+import Products from "../../Components/Products/Products";
 
 const Home = () => {
+
     return (
         <div className={styles.homePage}>
             <Slider />
-            {/*<Menu/>*/}
-            <FeedBackSlider />
+            <Products category="New Products"/>
+            <Products />
+            <FeedBackSlider/>
         </div>
     );
 };
