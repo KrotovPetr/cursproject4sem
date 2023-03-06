@@ -1,31 +1,61 @@
-.serviceCardBody{
-    height: 250px;
-    width:100%;
-    display:flex;
+.serviceCardBody {
+    height: 200px;
+    width: 100%;
+    display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
     box-sizing: border-box;
     column-gap: 20px;
     border-radius: 31px;
-    background: #ffffff;
-    box-shadow:  5px 5px 10px #d7d7d7, -2px -2px 10px #e9e9e9;
 
-    .photo{
-        background: #0156fe;
-        width:150px;
-        height:200px;
+    .photo {
+        width: 150px;
+        height: 150px;
     }
 
-    .serviceDescription{
-        height:100%;
+    .serviceDescription {
+        height: 200px;
         flex: 1 1 auto;
         box-sizing: border-box;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: flex-start;
+        row-gap: 10px;
 
-        .serviceName{
-            font-size: 20px;
-            font-weight: 600;
+        .serviceHeader{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+
+            .serviceName {
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .status{
+                width:100px;
+                height:20px;
+                background: #a1a5af;
+            }
         }
-    }
+        .contacts{
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            row-gap: 5px;
 
+            .pText{
+                font-size: 14px;
+                opacity:0.5;
+            }
+        }
+
+
+
+    }
 }
