@@ -1,11 +1,18 @@
 {
-  "compilerOptions": {
-    "target": "esNext",
-    "module": "commonjs",
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-  }
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "esNext",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "node_modules/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }

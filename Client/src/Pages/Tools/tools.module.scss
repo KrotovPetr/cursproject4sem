@@ -1,0 +1,18 @@
+.toolsPage {
+    min-height: 20vh;
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+
+    .toolsContent {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        row-gap: 20px;
+    }
+}

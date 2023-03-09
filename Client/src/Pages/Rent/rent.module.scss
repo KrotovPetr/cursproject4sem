@@ -1,17 +1,17 @@
-.rent{
-  min-height: 15vh;
-  width:100%;
-  display:flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin: 20px 0 20px 0;
+.rent {
+    min-height: 15vh;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 20px 0 20px 0;
 
-  .content{
-    width:1400px;
-    display:flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
-    gap: 10px;
-  }
+    .content {
+        width: 1400px;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+    }
 }

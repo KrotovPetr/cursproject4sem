@@ -1,13 +1,18 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './Reducers/UserSlice';
+import userReducer from "./Reducers/fetchDataSliceDir/fetchDataSlice";
+import {userAPI} from "./ApiQuery/UserService";
 const rootReducer = combineReducers({
     userReducer,
+    [userAPI.reducerPath]: userAPI.reducer
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
+        middleware: (getDefaultMiddleware)=>
+            getDefaultMiddleware().concat(userAPI.middleware)
+
     });
 };
 

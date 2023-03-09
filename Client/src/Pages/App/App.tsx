@@ -12,8 +12,7 @@ import AccountPage from '../AccountPage/AccountPage';
 import Supplies from '../Supplies/Supplies';
 import Service from '../Service/Service';
 import Tools from '../Tools/Tools';
-import Rent from "../Rent/Rent";
-
+import Rent from '../Rent/Rent';
 
 const App: FC = () => {
     return (
@@ -23,7 +22,7 @@ const App: FC = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="service" element={<Service />} />
-                    <Route path="rent" element={<Rent/>} />
+                    <Route path="rent" element={<Rent />} />
                     <Route path="supplies" element={<Supplies />} />
                     <Route path="tools" element={<Tools />} />
                     <Route path="login" element={<LoginPage />} />

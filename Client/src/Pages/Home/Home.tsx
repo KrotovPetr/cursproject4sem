@@ -8,8 +8,8 @@ const Home = () => {
     return (
         <div className={styles.homePage}>
             <Slider />
-            <Products category="New Products" />
-            <Products />
+            <Products category="New Products" hasCover={false} />
+            <Products hasCover={false} />
             <FeedBackSlider />
         </div>
     );
