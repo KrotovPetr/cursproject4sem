@@ -7,6 +7,8 @@ type TProducts = {
     category?: string;
     hasCover: boolean;
 };
+
+
 const Products: FC<TProducts> = (props) => {
     let arr = [
         'Носки',

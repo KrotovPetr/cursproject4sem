@@ -1,9 +1,25 @@
-import express from 'express';
+import express, {Express, Request, Response} from 'express';
+import dotenv from 'dotenv';
+import { sequelize } from './services/connectToDb';
 
-const app = express();
-const port = 5000;
+dotenv.config();
 
-app.get('/', (request, response) => {
-    response.send('Heldsafdsfdsfsdfdsadlo world!');
+const app: Express = express();
+const port = process.env.PORT ?? 5000;
+
+app.get('/', (request:Request, response:Response) => {
+    response.send('Hello world!');
 });
-app.listen(port, () => console.log(`Running on port ${port}`));
+
+
+
+app.listen(port, async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection has been established successfully.');
+    } catch (error) {
+        console.error('Unable to connect to the database:', error);
+    }
+    console.log(`Running on port ${port}`)
+
+});

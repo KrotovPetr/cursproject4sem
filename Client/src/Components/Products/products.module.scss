@@ -1,57 +1,51 @@
 .productsList {
-    width: 1400px;
-    height: fit-content;
+  max-width: 1400px;
+  width: 100%;
+  position: relative;
+  height: fit-content;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: 20px;
+
+  .categoryHeader {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .productSlider {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row nowrap;
     justify-content: center;
-    align-items: flex-start;
-    row-gap: 20px;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    column-gap: 10px;
 
-    .categoryHeader {
-        font-size: 22px;
-        font-weight: bold;
+    .productsContainer {
+      display: flex;
+      gap: 20px;
+      overflow: auto;
     }
 
-    .productSlider {
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-        overflow: auto;
-        width: 100%;
-        column-gap: 10px;
-
-        .productsContainer {
-            column-gap: 20px;
-            position: relative;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: flex-start;
-            overflow: hidden;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            list-style: none;
-            margin: 10px 0 0 0;
-            z-index: 0;
-        }
-
-        .rightArrow,
-        .leftArrow {
-            width: 30px;
-            height: 30px;
-            border: none;
-            background: #020202;
-            color: #ffffff;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 50% 50% 50% 50%;
-            z-index: 2px;
-        }
+    .rightArrow,
+    .leftArrow {
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: #020202;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 50% 50% 50% 50%;
+      z-index: 2;
+      flex: 0 0 30px;
     }
+  }
 }
 
 .productsContainer::-webkit-scrollbar {
-    width: 0;
+  width: 0;
 }
