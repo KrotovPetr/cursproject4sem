@@ -1,12 +1,15 @@
-const {Sequelize} = require('sequelize')
+import {Sequelize} from 'sequelize';
 
-module.exports = new Sequelize(
+export const sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
-    process.env.DB_PASSWORD,
+    String(process.env.DB_PASSWORD),
     {
         dialect: 'postgres',
         host: process.env.DB_HOST,
-        port: process.env.DB_PORT
+        port: Number(process.env.DB_PORT),
+        logging: (...msg):void => {
+            console.log(new Date().toLocaleString() + ' — ' + msg[0] + '\n');
+        }
     }
 )

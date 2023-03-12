@@ -2,7 +2,7 @@ import {IUser} from "../../../Utils/Interfaces/interfaces";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {fetchUserData} from "../../Actions/actions";
 
-interface IUserSlice{
+export interface IUserSlice{
     isUserDataRequestSend: boolean,
     isUserDataRequestSuccess: boolean,
     isUserDataRequestError: boolean,
@@ -26,42 +26,24 @@ export const userReducer = createSlice({
     initialState: userInitialState,
     reducers: {
 
-        userFetchSuccess(state, action: PayloadAction<any>){
-            state.isUserDataRequestSend = false;
-            state.isUserDataRequestSuccess = true;
-            state.isUserDataRequestError = false;
-        },
-
-        userFetchSend(state){
-            state.isUserDataRequestSend = true;
-            state.isUserDataRequestSuccess = false;
-            state.isUserDataRequestError = false;
-        },
-
-        userFetchError(state, action: PayloadAction<string>){
-            state.isUserDataRequestSend = false
-            state.isUserDataRequestSuccess = false;
-            state.isUserDataRequestError = true;
-        },
-
     },
-    extraReducers: {
-        [fetchUserData.fulfilled.type]:(state, action: PayloadAction<any>)=>{
-            state.userData = action
-            state.isUserDataRequestSend = false;
-            state.isUserDataRequestSuccess = true;
-            state.isUserDataRequestError = false;
-        },
-        [fetchUserData.pending.type]:(state)=>{
-            state.isUserDataRequestSend = true;
-            state.isUserDataRequestSuccess = false;
-            state.isUserDataRequestError = false;
-        },
-        [fetchUserData.rejected.type]:(state, action: PayloadAction<any>)=>{
-            state.isUserDataRequestSend = false;
-            state.isUserDataRequestSuccess = false;
-            state.isUserDataRequestError = true;
-        },
+    extraReducers: builder => {
+        builder.addCase(fetchUserData.fulfilled, (state, action)=>{
+                state.userData = action.payload
+                state.isUserDataRequestSend = false;
+                state.isUserDataRequestSuccess = true;
+                state.isUserDataRequestError = false;
+        })
+        builder.addCase(fetchUserData.rejected, (state, action)=>{
+                state.isUserDataRequestSend = false;
+                state.isUserDataRequestSuccess = false;
+                state.isUserDataRequestError = true;
+        })
+        builder.addCase(fetchUserData.pending, (state)=>{
+                state.isUserDataRequestSend = true;
+                state.isUserDataRequestSuccess = false;
+                state.isUserDataRequestError = false;
+        })
     }
 });
 
