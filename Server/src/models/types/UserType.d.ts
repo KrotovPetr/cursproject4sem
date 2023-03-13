@@ -4,11 +4,10 @@ export interface UserType {
     idUser: number,
     firstName: string,
     lastName: string,
-    login: string,
-    email: string,
-    password: string,
-    birthday: string,
-    isActive: boolean
-    role: RoleEnum,
-    phone: string,
+    // login: string,
+    // password: string,
+    // birthday: string,
+    // isActive: boolean
+    // email: string,
+
 }

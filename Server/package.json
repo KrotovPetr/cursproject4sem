@@ -12,7 +12,9 @@
     "cors": "2.8.5",
     "dotenv": "16.0.3",
     "express": "4.18.2",
+    "morgan": "1.10.0",
     "sequelize": "6.29.3",
+    "sequelize-typescript": "^2.1.5",
     "typescript": "4.9.5"
   },
   "devDependencies": {
@@ -22,6 +24,7 @@
     "nodemon": "2.0.21",
     "pg": "8.10.0",
     "pg-hstore": "2.3.4",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "10.9.1",
     "tsc-watch": "6.0.0"
   }

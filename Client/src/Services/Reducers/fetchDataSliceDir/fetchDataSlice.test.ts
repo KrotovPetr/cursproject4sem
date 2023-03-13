@@ -11,8 +11,7 @@ const initialState: IUserSlice = {
     fetchErrorData: ""
 }
 
-
-
+// Arrange-Act-Assert-Teardown pattern
 describe('user reducer tests', ()=>{
     it('should handle initial state', () => {
         expect(userReducer.reducer(undefined, { type: 'unknown' })).toEqual({
@@ -39,13 +38,17 @@ describe('user reducer tests', ()=>{
         }))
     })
 
-    it('should handle fetchUserData rejected', ()=>{
-        const data = {isUserDataRequestSend: true,
+    it('should handle fetchUserData rejected', ()=>{//<--name
+        const data = { //<---arrange
+            ...initialState,
+            isUserDataRequestSend: true,
             isUserDataRequestSuccess: false,
-            isUserDataRequestError: false,}
-        const nextState: any = userReducer.reducer({...initialState, ...data}, fetchUserData.rejected)
+            isUserDataRequestError: false
+        }
 
-        expect(nextState).toEqual(expect.objectContaining({
+        const nextState: any = userReducer.reducer(data, fetchUserData.rejected)//<---act
+
+        expect(nextState).toEqual(expect.objectContaining({//<--assert
             isUserDataRequestSend: false,
             isUserDataRequestSuccess: false,
             isUserDataRequestError: true,

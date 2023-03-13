@@ -1,9 +1,10 @@
-import { DataTypes, Model } from 'sequelize';
-import  {sequelize}  from '../../db';
+import {Model} from 'sequelize-typescript';
 import {UserType} from "../types/UserType";
+import {DataTypes} from "sequelize";
+import {sequelize} from "../../db";
 
 export const User = sequelize.define<Model<UserType>>(
-    'User',
+    'users',
     {
         idUser: {
             type: DataTypes.INTEGER,
@@ -19,38 +20,38 @@ export const User = sequelize.define<Model<UserType>>(
             type: DataTypes.STRING,
             allowNull: false
         },
+        // login: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        //
+        // },
         // email: {
         //     type: DataTypes.STRING,
         //     allowNull: false
         //
         // },
-        login: {
-            type: DataTypes.STRING,
-            allowNull: false
-
-        },
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        isActive: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
-        },
-        birtday: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
-        role: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
-        phone:{
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+        // password: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
+        // isActive: {
+        //     type: DataTypes.BOOLEAN,
+        //     allowNull: false
+        // },
+        // birthday: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
+        //
+        // role: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
+        //
+        // phone:{
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
 
 
     },
