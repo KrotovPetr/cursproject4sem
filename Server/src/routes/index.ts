@@ -1,12 +1,9 @@
 import Router from 'express';
-import {User} from "../models/db/User";
+import {userRouter} from "./userRoutes";
 
 
 const router = Router();
 
-router.get('/users', async (req, res) => {
-    const users = await User.findAll();
-    res.send(users);
-});
+router.use('/users', userRouter);
 
 export default router;

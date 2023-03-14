@@ -10,29 +10,39 @@ export const User = sequelize.define<Model<UserType>>(
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
-        firstName: {
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        password: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        lastName: {
+        isActivated: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        activationLink:{
             type: DataTypes.STRING,
             allowNull: false
-        },
+        }
+        // firstName: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
+        // lastName: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false
+        // },
         // login: {
         //     type: DataTypes.STRING,
         //     allowNull: false
         //
-        // },
-        // email: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false
-        //
-        // },
-        // password: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false
         // },
         // isActive: {
         //     type: DataTypes.BOOLEAN,
@@ -52,7 +62,7 @@ export const User = sequelize.define<Model<UserType>>(
         //     type: DataTypes.STRING,
         //     allowNull: false
         // },
-
+        //
 
     },
     {

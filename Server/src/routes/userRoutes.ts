@@ -3,6 +3,10 @@ import userController from "../controllers/userController";
 
 export const userRouter = Router();
 
-userRouter.post('/', userController.createUser)
-userRouter.get('/all', userController.getAllUsers)
-userRouter.get('/current', userController.getOneUser)
+// userRouter.post('/login', userController.getAllUsers);
+// userRouter.post('/logout', userController.getAllUsers);
+userRouter.post('/registration', userController.registrationNewUser);
+
+userRouter.get('/activate/:link', userController.activateAccount);
+// userRouter.get('/refresh', userController.getAllUsers);
+userRouter.get('/', userController.getAllUsers);

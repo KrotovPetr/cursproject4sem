@@ -1,13 +1,13 @@
-import {RoleEnum} from "../enum/RoleEnum";
-
 export interface UserType {
     idUser: number,
-    firstName: string,
-    lastName: string,
+    password: string,
+    email: string,
+    isActivated: boolean,
+    activationLink: string
+    // firstName: string,
+    // lastName: string,
     // login: string,
-    // password: string,
     // birthday: string,
-    // isActive: boolean
-    // email: string,
+    // isActive: boolean,
 
 }

@@ -1,22 +1,56 @@
 import {User} from "../models/db/User";
+import {NextFunction} from "express";
+import userService from "../services/userService";
 
 
 class UserController {
-    async createUser(req, res) {
-        const brand = await User.create(req.body)
-        return {status:200, data: res.json(brand)}
+    async registrationNewUser(req: Request, res, next){
+        try{
+            const {email, password}:any = req.body;
+            const userData = await userService.registration(email, password)
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true, secure: true})
+            return res.json(userData);
+        } catch(e){
+            console.log(e);
+        }
     }
-    async getAllUsers(req, res) {
-        console.log(1)
-        const brands = await User.findAll();
-        console.log(2)
-        return res.status(200).json(brands);
-    }
-    async getOneUser(req, res) {
-        // let results = await User.findOne({where: {VIN: params}});
-        // return {status:200, data: res.json(results)}
-    }
+    async loginToAccount(req: Request, res: Response, next: NextFunction){
+        try{
 
+        }catch(e){
+
+        }
+    }
+    async logoutFromAccount(req: Request, res: Response, next: NextFunction){
+        try{
+
+        }catch(e){
+
+        }
+    }
+    async activateAccount(req, res, next){
+        try{
+
+        }catch(e){
+
+        }
+    }
+    async refreshToken(req: Request, res: Response, next: NextFunction){
+        try{
+
+        }catch(e){
+
+        }
+    }
+    async getAllUsers(req, res, next){
+        let users = await User.findAll();
+
+        try{
+            return res.json(users)
+        }catch(e){
+            return res.json(e)
+        }
+    }
 }
 
 

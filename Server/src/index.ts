@@ -4,26 +4,23 @@ import router from "./routes";
 import * as fs from 'fs';
 import * as path from 'path';
 import {sequelize} from "./db";
-
-
-const dotenv = require('dotenv')
-
-
-dotenv.config();
+import cookieParser from 'cookie-parser';
+import {DB_NAME, PORT} from "./config";
 
 const app: Express = express();
-const port: string | number = process.env.PORT ?? 5000;
+const port: string | number = PORT ?? 5000;
 
 
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use("/", router);
 
 const connectToDb: () => Promise<void> = async () => {
     try {
         await sequelize.authenticate();
         await sequelize.sync();
-        console.log(`Connection to ${process.env.DB_NAME} has been established successfully.`);
+        console.log(`Connection to ${DB_NAME} has been established successfully.`);
 
     } catch (error) {
         console.error('Unable to connect to the database:', error);
