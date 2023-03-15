@@ -6,6 +6,8 @@ import * as path from 'path';
 import {sequelize} from "./db";
 import cookieParser from 'cookie-parser';
 import {DB_NAME, PORT} from "./config";
+import {errorMiddlewareFunction} from "./middlewares/errorMiddleware";
+
 
 const app: Express = express();
 const port: string | number = PORT ?? 5000;
@@ -15,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use("/", router);
+app.use(errorMiddlewareFunction);
 
 const connectToDb: () => Promise<void> = async () => {
     try {

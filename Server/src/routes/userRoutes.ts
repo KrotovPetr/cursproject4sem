@@ -1,12 +1,15 @@
 import Router from 'express';
 import userController from "../controllers/userController";
+import {body} from 'express-validator';
+import {authMiddlewareFunc} from "../middlewares/authMiddleware";
 
 export const userRouter = Router();
 
-// userRouter.post('/login', userController.getAllUsers);
-// userRouter.post('/logout', userController.getAllUsers);
-userRouter.post('/registration', userController.registrationNewUser);
+userRouter.post('/login', userController.loginToAccount);
+userRouter.post('/logout', userController.logoutFromAccount);
+userRouter.post('/registration', body('email').isEmail(),body('password').isLength({min:3, max:32}),userController.registrationNewUser);
 
 userRouter.get('/activate/:link', userController.activateAccount);
-// userRouter.get('/refresh', userController.getAllUsers);
-userRouter.get('/', userController.getAllUsers);
+userRouter.get('/refresh', userController.refreshToken);
+// @ts-ignore
+userRouter.get('/', authMiddlewareFunc, userController.getAllUsers);
