@@ -1,10 +1,16 @@
 import React from 'react';
-import Options from '../../Components/Options/Options';
 import styles from './loginPage.module.scss';
-import Button from '../../Components/Button/Button';
-import LoginForm from '../../Components/Forms/LoginForm/LoginForm';
+import Button from '../../Components/button/Button';
+import LoginForm from '../../Components/forms/LoginForm/LoginForm';
+import {useNavigate} from "react-router-dom";
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+
+    const toRegistration = (): void => {
+        navigate('/registration')
+    }
+
     return (
         <div className={styles.loginPage}>
             <div className={styles.loginForm}>
@@ -38,7 +44,7 @@ const LoginPage = () => {
                             </li>
                         </ul>
                         <div className={styles.regButton}>
-                            <Button butContent="Create an account" />
+                            <Button butContent="Create an account" clicker = {toRegistration}/>
                         </div>
                     </div>
                 </div>

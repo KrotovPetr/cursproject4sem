@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import styles from './accountPage.module.scss';
-import CompareList from '../../Components/CompareList/CompareList';
-import WishList from '../../Components/WishList/WishList';
-import Menu from '../../Components/Menu/Menu';
+import CompareList from '../../Components/compareList/CompareList';
+import WishList from '../../Components/wishList/WishList';
+import Menu from '../../Components/menu/Menu';
 
 const AccountPage: FC = () => {
     return (

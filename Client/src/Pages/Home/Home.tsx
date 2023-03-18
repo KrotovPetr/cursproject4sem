@@ -1,8 +1,8 @@
 import React from 'react';
-import FeedBackSlider from '../../Components/Sliders/FeedBackSlider/FeedBackSlider';
-import Slider from '../../Components/Sliders/Slider/Slider';
+import FeedBackSlider from '../../Components/sliders/feedBackSlider/FeedBackSlider';
+import Slider from '../../Components/sliders/slider/Slider';
 import styles from './home.module.scss';
-import Products from '../../Components/Products/Products';
+import Products from '../../Components/products/Products';
 
 const Home = () => {
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import styles from './service.module.scss';
-import ServiceCard from '../../Components/ServiceCard/ServiceCard';
+import ServiceCard from '../../Components/serviceCard/ServiceCard';
 import { v4 as uuidv4 } from 'uuid';
 import Tools from '../../Utils/Images/tools.png';
 
