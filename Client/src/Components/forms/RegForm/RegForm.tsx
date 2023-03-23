@@ -6,18 +6,18 @@ import {NavLink, useNavigate} from "react-router-dom";
 import {registerAPI} from "../../../Store/ApiQuery/UserService";
 const RegForm: FC = () => {
     const navigate = useNavigate();
-    const [ registerUser, result]  = registerAPI.useRegistrationMutation();
+    // const [ registerUser, result]  = registerAPI.useRegistrationMutation();
     const { register, handleSubmit } = useForm<any>();
-    const onSubmit: SubmitHandler<any> = (data) => {
-        if(data.Password.localeCompare(data["Repeat Password"])===0){
-            registerUser(data);
-        } else {
-            console.log("Пароли не совпадают")
-        }
-
-    };
+    // const onSubmit: SubmitHandler<any> = (data) => {
+    //     if(data.Password.localeCompare(data["Repeat Password"])===0){
+    //         registerUser(data);
+    //     } else {
+    //         console.log("Пароли не совпадают")
+    //     }
+    //
+    // };
     return (
-        <form className={styles.regForm} onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.regForm} onSubmit={handleSubmit(()=>console.log(1))}>
             <div className={styles.inputs}>
                 <Input label="Email" register={register} required/>
                 <Input label="Password" register={register} required/>

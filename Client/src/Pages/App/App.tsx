@@ -13,6 +13,8 @@ import Supplies from '../Supplies/Supplies';
 import Service from '../Service/Service';
 import Tools from '../Tools/Tools';
 import Rent from '../Rent/Rent';
+import ResetPasswordPage from "../ResetPasswordPage/ResetPasswordPage";
+import RecoverPasswordPage from "../RecoverPasswordPage/RecoverPasswordPage";
 
 const App: FC = () => {
     return (
@@ -29,6 +31,8 @@ const App: FC = () => {
                     <Route path="about" element={<AboutPage />} />
                     <Route path="registration" element={<RegistrationPage />} />
                     <Route path="account" element={<AccountPage />} />
+                    <Route path="reset-password" element={<ResetPasswordPage/>} />
+                    <Route path="recover-password" element={<RecoverPasswordPage/>} />
                 </Routes>
                 <Options />
                 <Footer />

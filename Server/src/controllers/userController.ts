@@ -1,9 +1,9 @@
-import {User} from "../models/db/User";
-import express, {NextFunction} from "express";
+import express from "express";
 import userService from "../services/userService";
 import {CLIENT_URL} from "../config";
 import {validationResult} from "express-validator";
 import {ApiError} from "../exceptions/apiError";
+import {ResetLink} from "../models/db/ResetLink";
 
 class UserController {
     async registrationNewUser(req: express.Request, res: express.Response, next:express.NextFunction){
@@ -35,9 +35,7 @@ class UserController {
         try {
             const {refreshToken} = req.cookies;
             const token = await userService.logout(refreshToken);
-            console.log(1)
             res.clearCookie('refreshToken');
-            console.log(2)
             return res.json(token);
         } catch (e) {
             next(e);
@@ -71,6 +69,30 @@ class UserController {
             next(e);
         }
     }
+
+    async forgotPassword(req: express.Request, res: express.Response, next:express.NextFunction){
+        try{
+            const {email}:any = req.body;
+            await userService.resetPassword(email);
+            return res.status(200).json({data: "Success! All instructions will send to your email"});
+        }catch(e){
+            next(e);
+        }
+    }
+
+    async validTheRequest(req: express.Request, res: express.Response, next:express.NextFunction){
+        try {
+            const {password, link} = req.body;
+            console.log(req.body)
+            let userData = await userService.setNewPassword(link, password);
+            console.log(userData)
+            res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
+            return res.json(userData);
+        } catch (e) {
+            next(e);
+        }
+    }
+
 }
 
 

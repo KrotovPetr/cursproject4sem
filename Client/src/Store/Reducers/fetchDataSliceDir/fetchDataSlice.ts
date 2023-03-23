@@ -1,5 +1,5 @@
-import {createSlice} from "@reduxjs/toolkit";
 import {fetchUserData} from "../../Actions/actions";
+import {createSlice} from "@reduxjs/toolkit";
 
 export interface IUserSlice{
     isUserDataRequestSend: boolean,
@@ -8,7 +8,6 @@ export interface IUserSlice{
     userData: null | any,
     userToken: null | string,
     fetchErrorData: string,
-    baseURL: string,
 }
 
 const userInitialState: IUserSlice = {
@@ -18,7 +17,6 @@ const userInitialState: IUserSlice = {
     userData: null,
     userToken: null,
     fetchErrorData: "",
-    baseURL: "http://localhost:5000"
 };
 
 

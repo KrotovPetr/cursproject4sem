@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 import styles from './loginForm.module.scss';
 import Input from '../../input/Input';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {loginAPI} from "../../../Store/ApiQuery/UserService";
+import {NavLink} from "react-router-dom";
 
 interface  IFormInput {
     email: string,
@@ -10,18 +11,18 @@ interface  IFormInput {
 }
 
 
-const LoginForm = () => {
-    const [loginUser, result]  = loginAPI.useCreateLoginMutation();
+const LoginForm: FC = () => {
+    // const [loginUser]  = loginAPI.useCreateLoginMutation();
     const { register, handleSubmit } = useForm<IFormInput>();
 
-    const onSubmit: SubmitHandler<IFormInput> = (data) => {
-        loginUser(data);
-    };
+    // const onSubmit: SubmitHandler<IFormInput> = (data) => {
+    //     loginUser(data);
+    // };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+        <form className={styles.form} onSubmit={handleSubmit(()=>console.log(1))}>
             <div className={styles.inputs}>
-                <Input label="Email" register={register} required/>
+                <Input label="Email" register={register} required />
                 <Input
                     label="Password"
                     register={register} required
@@ -31,7 +32,7 @@ const LoginForm = () => {
                 <div className={styles.button} >
                     <input type={"submit"} value={"Sign in"} className={styles.submit}/>
                 </div>
-                <a className={styles.aText}>Forgot your password?</a>
+                <NavLink to="/reset-password" className={styles.aText}>Forgot your password?</NavLink>
             </div>
         </form>
     );

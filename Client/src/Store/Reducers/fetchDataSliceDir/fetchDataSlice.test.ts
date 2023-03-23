@@ -9,7 +9,6 @@ const initialState: IUserSlice = {
     userData: null,
     userToken: null,
     fetchErrorData: "",
-    baseURL: ''
 }
 
 // Arrange-Act-Assert-Teardown pattern

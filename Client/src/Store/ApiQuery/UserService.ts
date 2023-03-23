@@ -13,7 +13,7 @@ interface PostResponse {
     userId: number;
 }
 
-export const loginAPI = createApi({
+export const loginAPI= createApi({
     reducerPath: 'loginAPI',
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000'}),
     endpoints: (build) =>({
@@ -34,16 +34,6 @@ export const registerAPI = createApi({
     reducerPath: 'registerAPI',
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000'}),
     endpoints: (build) =>({
-        registration: build.mutation({
-            query: (postData) => ({
-                url: '/users/register',
-                method: 'POST',
-                body: {
-                    email: postData.Email,
-                    password: postData.Password
-                }
-            })
-        })
+
     })
 })
-

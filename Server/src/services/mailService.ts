@@ -30,5 +30,21 @@ class MailService {
                 `
         }).then(() => console.log(`Email sent successfully to ${to}`)).catch((error) => console.error('Email send failed ', error));
     }
+
+    async sendResetPasswordMail(to: any, link) {
+        await this.transporter.sendMail({
+            from: SMTP_USER,
+            to,
+            subject: 'Восстановление пароля на аккаунте ' + API_URL,
+            text: '',
+            html:
+                `
+                    <div>
+                        <h1>Для сброса пароля перейдите по ссылке</h1>
+                        <a href="${link}">${link}</a>
+                    </div>
+                `
+        }).then(() => console.log(`Email sent successfully to ${to}`)).catch((error) => console.error('Email send failed ', error));
+    }
 }
 export default new MailService();

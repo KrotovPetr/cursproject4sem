@@ -2,10 +2,10 @@ import {sequelize} from "../../db";
 import {DataTypes} from "sequelize";
 import {User} from "./User";
 
-export const Token = sequelize.define<any>(
-    'tokens',
+export const ResetLink = sequelize.define<any>(
+    'resetLinks',
     {
-        idToken: {
+        idResetLink: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
@@ -14,10 +14,15 @@ export const Token = sequelize.define<any>(
         },
         idUser: {
             type: DataTypes.NUMBER,
-            defaultValue: false
+            allowNull: false,
         },
-        refreshToken: {
+        link: {
             type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        end_time:{
+            type: DataTypes.DATE,
             allowNull: false
         }
 
@@ -25,10 +30,10 @@ export const Token = sequelize.define<any>(
     {
         createdAt: false,
         updatedAt: false,
-        tableName: 'tokens'
+        tableName: 'resetLinks'
     }
 
 )
 
-User.hasOne(Token, {foreignKey: 'idUser'})
-Token.belongsTo(User, {foreignKey: 'idUser'})
+User.hasOne(ResetLink, {foreignKey: 'idUser'})
+ResetLink.belongsTo(User, {foreignKey: 'idUser'})

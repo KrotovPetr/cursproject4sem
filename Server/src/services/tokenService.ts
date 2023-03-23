@@ -46,6 +46,12 @@ class TokenService{
         return await Token.findOne({where: {refreshToken}});
     }
 
+    async destroyTokenByIdUser(idUser){
+        return await Token.destroy({where: {idUser}});
+    }
+
+
+
 }
 
 export default new TokenService();
