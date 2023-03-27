@@ -3,6 +3,7 @@ import styles from './accountPage.module.scss';
 import CompareList from '../../Components/compareList/CompareList';
 import WishList from '../../Components/wishList/WishList';
 import Menu from '../../Components/menu/Menu';
+import AccountDataBlock from "../../Components/accountComponents/accountDataBlock/accountDataBlock";
 
 const AccountPage: FC = () => {
     return (
@@ -16,9 +17,7 @@ const AccountPage: FC = () => {
                         <CompareList />
                         <WishList />
                     </div>
-                    <div className={styles.contentBlocks}>
-                        <p>Тут будет много опций, но в будущем</p>
-                    </div>
+                    <AccountDataBlock/>
                 </div>
             </main>
         </div>

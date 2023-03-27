@@ -2,8 +2,8 @@ import React, {FC} from 'react';
 import styles from './loginForm.module.scss';
 import Input from '../../input/Input';
 import {SubmitHandler, useForm} from "react-hook-form";
-import {loginAPI} from "../../../Store/ApiQuery/UserService";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import {useLoginUserMutation} from "../../../Store/ApiQuery/UserService";
 
 interface  IFormInput {
     email: string,
@@ -12,15 +12,22 @@ interface  IFormInput {
 
 
 const LoginForm: FC = () => {
-    // const [loginUser]  = loginAPI.useCreateLoginMutation();
+    const navigate = useNavigate();
+    const [loginUser] = useLoginUserMutation();
     const { register, handleSubmit } = useForm<IFormInput>();
 
-    // const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    //     loginUser(data);
-    // };
+
+    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+       let response = await loginUser(data);
+       if(!('error' in response)){
+           navigate("/")
+       } else {
+           navigate("/registration")
+       }
+    };
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit(()=>console.log(1))}>
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
             <div className={styles.inputs}>
                 <Input label="Email" register={register} required />
                 <Input

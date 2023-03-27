@@ -33,6 +33,7 @@
             align-items: center;
             flex-flow: row nowrap;
             column-gap: 20px;
+            margin: 0 0 5px 0;
 
             .leftBlocks {
                 width: 435px;
@@ -43,12 +44,6 @@
                 row-gap: 5px;
             }
 
-            .contentBlocks {
-                flex: 1 1 auto;
-                height: 300px;
-                background: #0156fe;
-                color: white;
-            }
         }
     }
 }

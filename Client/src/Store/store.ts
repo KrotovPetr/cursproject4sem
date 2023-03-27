@@ -1,20 +1,31 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from "./Reducers/fetchDataSliceDir/fetchDataSlice";
-import {loginAPI} from "./ApiQuery/UserService";
+import { createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+
+export const api = createApi({
+    reducerPath: 'api',
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000'}),
+    tagTypes: ['user'],
+    endpoints: () => ({}),
+});
+
+
 const rootReducer = combineReducers({
     userReducer,
-    [loginAPI.reducerPath]: loginAPI.reducer
+    [api.reducerPath]: api.reducer
 });
 
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware)=>
-            getDefaultMiddleware().concat(loginAPI.middleware)
+            getDefaultMiddleware().concat(api.middleware)
 
     });
 };
+
+
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppStore = ReturnType<typeof setupStore>;

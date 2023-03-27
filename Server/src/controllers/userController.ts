@@ -15,7 +15,7 @@ class UserController {
             const {email, password}:any = req.body;
             const userData = await userService.registration(email, password)
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true})
-            return res.json(userData);
+            return res.json({status:201,userData});
         } catch(e){
             next(e);
         }
@@ -23,10 +23,9 @@ class UserController {
     async loginToAccount(req: express.Request, res: express.Response, next:express.NextFunction){
         try {
             const {email, password} = req.body;
-            console.log(req.body)
             const userData = await userService.login(email, password);
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
-            return res.json(userData);
+            return res.json({status:200, userData});
         } catch (e) {
             next(e);
         }
@@ -36,7 +35,7 @@ class UserController {
             const {refreshToken} = req.cookies;
             const token = await userService.logout(refreshToken);
             res.clearCookie('refreshToken');
-            return res.json(token);
+            return res.status(201).json(token);
         } catch (e) {
             next(e);
         }
@@ -45,7 +44,7 @@ class UserController {
         try{
             const activationLink = req.params.link;
             await userService.activate(activationLink);
-            return res.redirect(CLIENT_URL);
+            return res.status(201).redirect(CLIENT_URL);
         }catch(e){
             next(e);
         }
@@ -55,7 +54,7 @@ class UserController {
             const {refreshToken} = req.cookies;
             const userData = await userService.refresh(refreshToken);
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
-            return res.json(userData);
+            return res.status(201).json(userData);
         } catch (e) {
             next(e);
         }
@@ -64,7 +63,7 @@ class UserController {
     async getAllUsers(req: express.Request, res: express.Response, next:express.NextFunction){
         try{
             const users = await userService.getAllUsers();
-            return res.json(users);
+            return res.status(201).json(users);
         }catch(e){
             next(e);
         }
@@ -87,7 +86,7 @@ class UserController {
             let userData = await userService.setNewPassword(link, password);
             console.log(userData)
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
-            return res.json(userData);
+            return res.status(200).json(userData);
         } catch (e) {
             next(e);
         }

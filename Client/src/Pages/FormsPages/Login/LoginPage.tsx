@@ -1,18 +1,29 @@
-import React, { FC} from 'react';
-import styles from './regPage.module.scss';
-import Button from '../../Components/button/Button';
-import RegForm from '../../Components/forms/RegForm/RegForm';
+import React from 'react';
+import styles from './loginPage.module.scss';
+import Button from '../../../Components/button/Button';
+import LoginForm from '../../../Components/forms/LoginForm/LoginForm';
+import {useNavigate} from "react-router-dom";
 
-const RegistrationPage: FC = () => {
+const LoginPage = () => {
+    const navigate = useNavigate();
+
+    const toRegistration = (): void => {
+        navigate('/registration')
+    }
+
     return (
-        <div className={styles.regPage}>
-            <div className={styles.regForm} onSubmit={(): void => {}}>
+        <div className={styles.loginPage}>
+            <div className={styles.loginForm}>
                 <div className={styles.breadCrumbs}>Тут крошки</div>
-                <h2 className={styles.header}>Registration</h2>
+                <h2 className={styles.header}>Customer Login</h2>
                 <div className={styles.infoBlocks}>
                     <div className={styles.block}>
-                        <h4 className={styles.hText}>Create new account</h4>
-                        <RegForm />
+                        <h4 className={styles.hText}>Registered Customers</h4>
+                        <p className={styles.planeText}>
+                            If you have an account, sign in with your email
+                            address.
+                        </p>
+                        <LoginForm />
                     </div>
                     <div className={styles.block}>
                         <h4 className={styles.hText}>New Customer?</h4>
@@ -32,10 +43,8 @@ const RegistrationPage: FC = () => {
                                 Track orders and more
                             </li>
                         </ul>
-                        <div
-                            className={styles.regButton}
-                        >
-                            <Button butContent='Next'/>
+                        <div className={styles.regButton}>
+                            <Button butContent="Create an account" clicker = {toRegistration}/>
                         </div>
                     </div>
                 </div>
@@ -44,4 +53,4 @@ const RegistrationPage: FC = () => {
     );
 };
 
-export default RegistrationPage;
+export default LoginPage;

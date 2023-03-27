@@ -1,0 +1,17 @@
+.productsList {
+  max-width: 1400px;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  row-gap: 20px;
+
+  .categoryHeader {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+
+}

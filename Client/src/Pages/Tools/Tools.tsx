@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './tools.module.scss';
-import Products from '../../Components/products/Products';
+import Products from '../../Components/sliders/productsSlider/ProductsSlider';
 
 const Tools = () => {
     return (

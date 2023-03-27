@@ -1,39 +1,29 @@
-import { fetchBaseQuery} from "@reduxjs/toolkit/query";
-import { createApi } from '@reduxjs/toolkit/query/react'
+import {api} from "../store";
 
-interface PostData {
-    email: string,
-    password: string
-}
 
-interface PostResponse {
-    id: number;
-    title: string;
-    body: string;
-    userId: number;
-}
-
-export const loginAPI= createApi({
-    reducerPath: 'loginAPI',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000'}),
-    endpoints: (build) =>({
-        createLogin: build.mutation({
-            query: (postData) => ({
+export const AuthAPI = api.injectEndpoints({
+    endpoints: (builder) => ({
+        registerUser: builder.mutation<any, any>({
+            query: (params) => ({
+                url: "/users/registration",
+                method: 'POST',
+                body: {
+                    email: params.Email,
+                    password: params.Password
+                }
+            })
+        }),
+        loginUser: builder.mutation<any, any>({
+            query: (params) => ({
                 url: '/users/login',
                 method: 'POST',
                 body: {
-                    email: postData.Email,
-                    password: postData.Password
+                    email: params.Email,
+                    password: params.Password
                 }
             })
-        })
+        }),
     })
-})
+});
 
-export const registerAPI = createApi({
-    reducerPath: 'registerAPI',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000'}),
-    endpoints: (build) =>({
-
-    })
-})
+export const {useRegisterUserMutation, useLoginUserMutation} = AuthAPI;
