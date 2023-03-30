@@ -5,10 +5,10 @@
     font-family: 'Alegreya Sans SC', sans-serif;
 }
 
-.inputGroup .label {
+.labelLight,
+.labelDark,
+{
     padding: 0 10px;
-    background-color: #020203;
-    color: #fff;
     position: absolute;
     top: 50%;
     left: 15px;
@@ -19,20 +19,41 @@
     transition: all 0.3s;
 }
 
-.inputGroup .input {
+.inputGroup .inputBlack, .inputGroup .inputLight{
     padding: 18px 15px;
     width: 400px;
-    border: 2px solid #fff;
     outline: none;
-    color: #fff;
     font-size: 14px;
     font-family: inherit;
     background-color: transparent;
     border-radius: 4px;
 }
 
-.inputGroup .input:focus + .label,
-.inputGroup .input:not(:placeholder-shown) + .label {
+.inputGroup .inputBlack{
+    border: 2px solid #212121;
+    color: #212121;
+}
+
+.inputGroup .inputLight{
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.labelLight{
+    background: #f4f6fe;
+    color: #020202;
+}
+
+.labelDark{
+    background-color: #020203;
+    color: #ffffff;
+}
+
+.inputGroup .inputBlack:focus + .labelDark,
+.inputGroup .inputLight:focus + .labelDark,
+.inputGroup .inputBlack:focus + .labelLight,
+.inputGroup .inputLight:focus + .labelLight,
+{
     top: 0;
     font-size: 14px;
 }

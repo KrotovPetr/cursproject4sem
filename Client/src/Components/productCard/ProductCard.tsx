@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styles from './productCard.module.scss';
-import Lobzik from '../../../../Utils/Images/lobzik.jpg';
+import Lobzik from '../../Utils/Images/lobzik.jpg';
 const ProductCard: FC<any> = () => {
     return (
         <div className={styles.cardBody}>

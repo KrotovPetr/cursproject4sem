@@ -35,5 +35,4 @@ export const ResetLink = sequelize.define<any>(
 
 )
 
-User.hasOne(ResetLink, {foreignKey: 'idUser'})
-ResetLink.belongsTo(User, {foreignKey: 'idUser'})
+

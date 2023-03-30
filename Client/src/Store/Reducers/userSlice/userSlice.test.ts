@@ -1,5 +1,5 @@
-import {IUserSlice} from "./fetchDataSlice";
-import {userReducer} from "./fetchDataSlice";
+import {IUserSlice} from "./userSlice";
+import {userReducer} from "./userSlice";
 import {fetchUserData} from "../../Actions/actions";
 
 const initialState: IUserSlice = {

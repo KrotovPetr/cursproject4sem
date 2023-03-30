@@ -1,6 +1,5 @@
 import {sequelize} from "../../db";
 import {DataTypes} from "sequelize";
-import {User} from "./User";
 
 export const Token = sequelize.define<any>(
     'tokens',
@@ -29,6 +28,3 @@ export const Token = sequelize.define<any>(
     }
 
 )
-
-User.hasOne(Token, {foreignKey: 'idUser'})
-Token.belongsTo(User, {foreignKey: 'idUser'})

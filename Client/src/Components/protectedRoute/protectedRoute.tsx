@@ -1,10 +1,21 @@
-import React from 'react';
-
-const ProtectedRoute = () => {
+import React, {FC} from 'react';
+import {Navigate, Route} from "react-router-dom";
+const ProtectedRoute = ({ element: Component, isAuthenticated, ...rest }) => {
     return (
-        <div>
-            
-        </div>
+        <Route
+            {...rest}
+            element={
+                isAuthenticated ? (
+                    <Component />
+                ) : (
+                    <Navigate
+                        to="/login"
+                        replace
+                        state={{ from: rest.location.pathname }}
+                    />
+                )
+            }
+        />
     );
 };
 

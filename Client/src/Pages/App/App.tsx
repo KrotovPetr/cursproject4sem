@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC, useEffect} from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from '../Home/Home';
 import Header from '../../Components/header/Header';
@@ -15,9 +15,15 @@ import ResetPasswordPage from "../FormsPages/ResetPasswordPage/ResetPasswordPage
 import RecoverPasswordPage from "../FormsPages/RecoverPasswordPage/RecoverPasswordPage";
 import RegistrationPage from "../FormsPages/Registration/RegistrationPage";
 import LoginPage from "../FormsPages/Login/LoginPage";
-
+import ProtectedRoute from "../../Components/protectedRoute/protectedRoute";
+import {useAppSelector} from "../../Store/Hooks/redux";
 
 const App: FC = () => {
+    const isLogin = useAppSelector(state=>state.userReducer.isLogin);
+
+    useEffect(()=>{
+
+    }, [])
     return (
         <div>
             <BrowserRouter>
@@ -31,7 +37,7 @@ const App: FC = () => {
                     <Route path="login" element={<LoginPage />} />
                     <Route path="about" element={<AboutPage />} />
                     <Route path="registration" element={<RegistrationPage />} />
-                    <Route path="account" element={<AccountPage />} />
+                    <ProtectedRoute path="account" element={<AccountPage />} />
                     <Route path="reset-password" element={<ResetPasswordPage/>} />
                     <Route path="recover-password" element={<RecoverPasswordPage/>} />
                 </Routes>

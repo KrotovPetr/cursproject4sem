@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styles from './loginForm.module.scss';
-import Input from '../../input/Input';
+import Input from '../../inputs/input/Input';
 import {SubmitHandler, useForm} from "react-hook-form";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useLoginUserMutation} from "../../../Store/ApiQuery/UserService";

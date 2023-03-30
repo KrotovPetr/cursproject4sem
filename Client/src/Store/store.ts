@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from "./Reducers/fetchDataSliceDir/fetchDataSlice";
+import userReducer from './Reducers/userSlice/userSlice';
 import { createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
 export const api = createApi({
