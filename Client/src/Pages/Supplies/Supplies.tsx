@@ -1,8 +1,6 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 
-
-
-const Supplies:FC = () => {
+const Supplies: FC = () => {
     return <h1>Hello</h1>;
     // const dispatch = useAppDispatch();
     // const {userData} = useAppSelector(state => state.userReducer);

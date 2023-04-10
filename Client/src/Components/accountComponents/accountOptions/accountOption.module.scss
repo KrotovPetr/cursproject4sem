@@ -1,25 +1,24 @@
-.optionContainer{
-  width: 99%;
-  box-sizing: border-box;
-  min-height: 200px;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  gap:5px;
+.optionContainer {
+    width: 99%;
+    box-sizing: border-box;
+    min-height: 200px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
 
-  .line{
-    width: 100%;
-    opacity:0.6;
-  }
+    .line {
+        width: 100%;
+        opacity: 0.6;
+    }
 
-  .header{
-      font-size: 18px;
-      font-weight: bold;
-      color: #212121;
-  }
+    .header {
+        font-size: 18px;
+        font-weight: bold;
+        color: #212121;
+    }
 
-  .subInfoBlock{
-
-  }
+    .subInfoBlock {
+    }
 }

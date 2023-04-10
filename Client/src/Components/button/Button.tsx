@@ -3,7 +3,7 @@ import styles from './button.module.scss';
 
 type TButton = {
     butContent: string;
-    clicker?: ()=> void
+    clicker?: () => void;
 };
 
 const Button: FC<TButton> = (props) => {

@@ -6,8 +6,7 @@
 }
 
 .labelLight,
-.labelDark,
-{
+.labelDark {
     padding: 0 10px;
     position: absolute;
     top: 50%;
@@ -19,7 +18,8 @@
     transition: all 0.3s;
 }
 
-.inputGroup .inputBlack, .inputGroup .inputLight{
+.inputGroup .inputBlack,
+.inputGroup .inputLight {
     padding: 18px 15px;
     width: 400px;
     outline: none;
@@ -29,22 +29,22 @@
     border-radius: 4px;
 }
 
-.inputGroup .inputBlack{
+.inputGroup .inputBlack {
     border: 2px solid #212121;
     color: #212121;
 }
 
-.inputGroup .inputLight{
+.inputGroup .inputLight {
     border: 2px solid #fff;
     color: #fff;
 }
 
-.labelLight{
+.labelLight {
     background: #f4f6fe;
     color: #020202;
 }
 
-.labelDark{
+.labelDark {
     background-color: #020203;
     color: #ffffff;
 }
@@ -52,8 +52,7 @@
 .inputGroup .inputBlack:focus + .labelDark,
 .inputGroup .inputLight:focus + .labelDark,
 .inputGroup .inputBlack:focus + .labelLight,
-.inputGroup .inputLight:focus + .labelLight,
-{
+.inputGroup .inputLight:focus + .labelLight {
     top: 0;
     font-size: 14px;
 }

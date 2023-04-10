@@ -1,22 +1,20 @@
-import React, {FC} from 'react';
-import {Navigate, Route} from "react-router-dom";
-const ProtectedRoute = ({ element: Component, isAuthenticated, ...rest }) => {
-    return (
-        <Route
-            {...rest}
-            element={
-                isAuthenticated ? (
-                    <Component />
-                ) : (
-                    <Navigate
-                        to="/login"
-                        replace
-                        state={{ from: rest.location.pathname }}
-                    />
-                )
-            }
-        />
-    );
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+export type ProtectedRouteProps = {
+    isAuthenticated: boolean;
+    authenticationPath: string;
+    outlet: JSX.Element;
 };
 
+function ProtectedRoute({
+    isAuthenticated,
+    authenticationPath,
+    outlet,
+}: ProtectedRouteProps) {
+    if (isAuthenticated) {
+        return outlet;
+    } else {
+        return <Navigate to={{ pathname: authenticationPath }} />;
+    }
+}
 export default ProtectedRoute;

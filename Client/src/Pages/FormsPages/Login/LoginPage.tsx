@@ -2,14 +2,21 @@ import React from 'react';
 import styles from './loginPage.module.scss';
 import Button from '../../../Components/button/Button';
 import LoginForm from '../../../Components/forms/LoginForm/LoginForm';
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from 'react-router-dom';
+import {useAppSelector} from "../../../Store/Hooks/redux";
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const isLogin = useAppSelector((state) => state.userReducer.isLogin)
+
+    if (isLogin) {
+        return <Navigate to={"/account"} />;
+    }
 
     const toRegistration = (): void => {
-        navigate('/registration')
-    }
+        navigate('/registration');
+    };
+
 
     return (
         <div className={styles.loginPage}>
@@ -44,7 +51,10 @@ const LoginPage = () => {
                             </li>
                         </ul>
                         <div className={styles.regButton}>
-                            <Button butContent="Create an account" clicker = {toRegistration}/>
+                            <Button
+                                butContent="Create an account"
+                                clicker={toRegistration}
+                            />
                         </div>
                     </div>
                 </div>

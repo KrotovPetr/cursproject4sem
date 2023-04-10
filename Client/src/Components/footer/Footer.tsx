@@ -6,7 +6,7 @@ import FooterBlock from './FooterBlock/FooterBlock';
 import data from '../../Utils/Data/fakeData';
 import Telegram from '../../Utils/Images/telegram.png';
 import Instagram from '../../Utils/Images/Instagram.png';
-import {useForm} from "react-hook-form";
+import { useForm } from 'react-hook-form';
 const Footer: FC = () => {
     const { register, handleSubmit } = useForm<any>();
     return (
@@ -21,7 +21,13 @@ const Footer: FC = () => {
                     </p>
                 </div>
                 <form className={styles.emailSendForm}>
-                    <InputSl border={"light"} lbl={"black"} register={register} required label={"Email"}/>
+                    <InputSl
+                        border={'light'}
+                        lbl={'black'}
+                        register={register}
+                        required
+                        label={'Email'}
+                    />
                     <div className={styles.butField}>
                         <Button butContent="Subscribe" />
                     </div>

@@ -8,26 +8,41 @@ import User from '../../../Utils/Images/user.png';
 const HeaderBody: FC = () => {
     const navigate = useNavigate();
 
-    const toLogin = ()=>{
-        navigate('/login')
-    }
+    const toAccount = () => {
+        navigate('/account');
+    };
 
-    const toBasket = ()=>{
-        navigate('/basket')
-    }
+    const toBasket = () => {
+        navigate('/basket');
+    };
 
-    const toSearchPage = ()=>{
-        navigate('/search')
-    }
+    const toSearchPage = () => {
+        navigate('/search');
+    };
 
     return (
         <div className={styles.mainContainer}>
             <div className={styles.contentContainer}>
                 <Bar />
                 <div className={styles.functions}>
-                    <img src={Loop} className={styles.image} alt={'loop'} onClick={toBasket}/>
-                    <img src={Basket} className={styles.image} alt={'basket'} onClick={toBasket}/>
-                    <img src={User} className={styles.image} alt={'user'} onClick={toLogin}/>
+                    <img
+                        src={Loop}
+                        className={styles.image}
+                        alt={'loop'}
+                        onClick={toBasket}
+                    />
+                    <img
+                        src={Basket}
+                        className={styles.image}
+                        alt={'basket'}
+                        onClick={toBasket}
+                    />
+                    <img
+                        src={User}
+                        className={styles.image}
+                        alt={'user'}
+                        onClick={toAccount}
+                    />
                 </div>
             </div>
         </div>

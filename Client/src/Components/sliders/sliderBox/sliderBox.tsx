@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './sliderBox.module.scss';
-import {StyledSlider} from "../styledSlider/styledSlider";
-import ProductCard from "../../productCard/ProductCard";
-import {v4 as uuidv4} from "uuid";
+import { StyledSlider } from '../styledSlider/styledSlider';
+import ProductCard from '../../productCard/ProductCard';
+import { v4 as uuidv4 } from 'uuid';
 
 const SliderBox = (props: any) => {
     const settings = {
@@ -15,13 +15,15 @@ const SliderBox = (props: any) => {
     };
 
     return (
-    <div className={styles.slider}>
+        <div className={styles.slider}>
             <StyledSlider {...settings}>
-                {props.arr && props.arr.map((product: any) => (
-                    <ProductCard key={uuidv4()} elem={product} />
-                ))}
+                {props.arr &&
+                    props.arr.map((product: any) => (
+                        <ProductCard key={uuidv4()} elem={product} />
+                    ))}
             </StyledSlider>
-    </div>);
+        </div>
+    );
 };
 
 export default SliderBox;

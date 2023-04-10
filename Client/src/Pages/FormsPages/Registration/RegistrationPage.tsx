@@ -1,9 +1,17 @@
-import React, { FC} from 'react';
+import React, { FC } from 'react';
 import styles from './regPage.module.scss';
 import Button from '../../../Components/button/Button';
 import RegForm from '../../../Components/forms/RegForm/RegForm';
+import {useAppSelector} from "../../../Store/Hooks/redux";
+import {Navigate} from "react-router-dom";
 
 const RegistrationPage: FC = () => {
+    const isLogin = useAppSelector((state) => state.userReducer.isLogin)
+
+    if (isLogin) {
+        return <Navigate to={"/account"} />;
+    }
+
     return (
         <div className={styles.regPage}>
             <div className={styles.regForm} onSubmit={(): void => {}}>
@@ -32,9 +40,7 @@ const RegistrationPage: FC = () => {
                                 Track orders and more
                             </li>
                         </ul>
-                        <div
-                            className={styles.regButton}
-                        >
+                        <div className={styles.regButton}>
                             {/*<Button butContent='Next'/>*/}
                         </div>
                     </div>

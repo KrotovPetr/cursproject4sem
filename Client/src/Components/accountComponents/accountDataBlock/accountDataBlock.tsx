@@ -1,24 +1,24 @@
 import React from 'react';
 import styles from './accountBlock.module.scss';
-import AccountOption from "../accountOptions/accountOption";
+import AccountDashboard from "../accountDashboard/accountDashboard";
+import AccountInformation from "../accountInformation/accountInformation";
+import AddressBook from "../addressBook/addressBook";
+import MyOrders from "../myOrders/myOrders";
 
 const AccountDataBlock = () => {
-    const options = [
-        "Account Information",
-        "Account Information",
-        "Account Information",
-        "Account Information",
-        "Account Information",
-        "Account Information",
-    ]
+    const options:JSX.Element[] = [
+        <AccountDashboard/>,
+        <AccountInformation/>,
+        <AddressBook/>,
+        <MyOrders/>
+    ];
+
     return (
         <div className={styles.accountContentBlock}>
             <div className={styles.options}>
-                {
-                    options.map((elem)=>{
-                        return <AccountOption header={elem}/>
-                    })
-                }
+                {options.map((elem) => {
+                    return elem;
+                })}
             </div>
         </div>
     );

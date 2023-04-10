@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, { FC, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from '../Home/Home';
 import Header from '../../Components/header/Header';
@@ -11,19 +11,23 @@ import Supplies from '../Supplies/Supplies';
 import Service from '../Service/Service';
 import Tools from '../Tools/Tools';
 import Rent from '../Rent/Rent';
-import ResetPasswordPage from "../FormsPages/ResetPasswordPage/ResetPasswordPage";
-import RecoverPasswordPage from "../FormsPages/RecoverPasswordPage/RecoverPasswordPage";
-import RegistrationPage from "../FormsPages/Registration/RegistrationPage";
-import LoginPage from "../FormsPages/Login/LoginPage";
-import ProtectedRoute from "../../Components/protectedRoute/protectedRoute";
-import {useAppSelector} from "../../Store/Hooks/redux";
+import ResetPasswordPage from '../FormsPages/ResetPasswordPage/ResetPasswordPage';
+import RecoverPasswordPage from '../FormsPages/RecoverPasswordPage/RecoverPasswordPage';
+import RegistrationPage from '../FormsPages/Registration/RegistrationPage';
+import LoginPage from '../FormsPages/Login/LoginPage';
+import { useAppDispatch, useAppSelector } from '../../Store/Hooks/redux';
+import ProtectedRoute from '../../Components/protectedRoute/protectedRoute';
+import {changeLogin} from "../../Store/Reducers/userSlice/userSlice";
+import {isAuth} from "../../Utils/Functions/isLogin";
 
 const App: FC = () => {
-    const isLogin = useAppSelector(state=>state.userReducer.isLogin);
+    const dispatch = useAppDispatch();
+    const isLogin = useAppSelector((state) => state.userReducer.isLogin)
 
     useEffect(()=>{
+        dispatch(changeLogin(isAuth()));
+    },[])
 
-    }, [])
     return (
         <div>
             <BrowserRouter>
@@ -37,9 +41,24 @@ const App: FC = () => {
                     <Route path="login" element={<LoginPage />} />
                     <Route path="about" element={<AboutPage />} />
                     <Route path="registration" element={<RegistrationPage />} />
-                    <ProtectedRoute path="account" element={<AccountPage />} />
-                    <Route path="reset-password" element={<ResetPasswordPage/>} />
-                    <Route path="recover-password" element={<RecoverPasswordPage/>} />
+                    <Route
+                        path="account"
+                        element={
+                            <ProtectedRoute
+                                isAuthenticated = {isLogin}
+                                authenticationPath= {"/login"}
+                                outlet={<AccountPage />}
+                            />
+                        }
+                    />
+                    <Route
+                        path="reset-password"
+                        element={<ResetPasswordPage />}
+                    />
+                    <Route
+                        path="recover-password"
+                        element={<RecoverPasswordPage />}
+                    />
                 </Routes>
                 <Options />
                 <Footer />

@@ -1,16 +1,16 @@
-.accountContentBlock{
-  flex: 1 1 auto;
-  height: 60vh;
-  color: white;
-  overflow: auto;
+.accountContentBlock {
+    flex: 1 1 auto;
+    height: 60vh;
+    color: white;
+    overflow: auto;
 
-  .options{
-      width: 100%;
-      height: fit-content;
-      display: flex;
-      flex-flow: column nowrap;
-      align-items: flex-start;
-      justify-content: center;
-      gap:20px;
-  }
+    .options {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+    }
 }

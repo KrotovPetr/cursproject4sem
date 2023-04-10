@@ -1,0 +1,20 @@
+.accountInfo{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: fit-content;
+
+  .header{
+    font-size: 20px;
+  }
+
+  .infoContainer{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: #0156fe;
+  }
+}

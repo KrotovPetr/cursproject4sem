@@ -1,0 +1,10 @@
+.dashboardBlock{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .header{
+      font-size: 20px;
+  }
+}
