@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
+import React from 'react';
 import styles from './input.module.scss';
 import { Simulate } from 'react-dom/test-utils';
 import input = Simulate.input;
-import { Path, UseFormRegister } from 'react-hook-form';
+import {FieldPath,  UseFormRegister} from 'react-hook-form';
 
 interface IFormValues {
     Email?: string;
@@ -11,19 +11,22 @@ interface IFormValues {
 }
 
 type InputProps = {
-    label: string;
+    label: FieldPath<any>;
     register: UseFormRegister<any>;
     required: boolean;
+    isReq?: boolean;
+    defaultValue?: string;
 };
 
-const Input = ({ label, register, required }: InputProps) => {
+const Input = ({ label, register, required, isReq = true, defaultValue = ""}: InputProps) => {
     return (
         <div className={styles.inputElem}>
             <label className={styles.label}>
                 {label}
-                <span className={styles.labelSpan}>*</span>
+                {isReq && <span className={styles.labelSpan}>*</span>}
             </label>
             <input
+                defaultValue={defaultValue}
                 {...register(label, { required })}
                 className={styles.input}
             />

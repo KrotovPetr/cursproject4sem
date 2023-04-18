@@ -3,7 +3,7 @@ import {UserType} from "../types/UserType";
 import {DataTypes} from "sequelize";
 import {sequelize} from "../../db";
 
-export const Good = sequelize.define<any>(
+export const Order = sequelize.define<any>(
     'goods',
     {
         idGood: {
