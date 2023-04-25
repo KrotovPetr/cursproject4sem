@@ -1,4 +1,3 @@
-import {User} from "../models/db/User";
 import bcrypt from 'bcrypt';
 import {v4 as uuidv4} from 'uuid';
 import mailService from "./mailService";
@@ -6,12 +5,12 @@ import tokenService from "./tokenService";
 import {userDTO} from "../dto/userDTO";
 import {API_URL} from "../config";
 import {ApiError} from "../exceptions/apiError";
-import {ResetLink} from "../models/db/ResetLink";
 import resetLinkService from "./resetLinkService";
+import {User} from "../models/db/User";
 
 class UserService {
     async registration(email, password){
-        const candidate: any = await User.findOne({where: {email: email}})
+        const candidate: any = await User.findAll({where:{email}})
         if (candidate){
             throw ApiError.BadRequest(`User ${email} is already exist!`)
         }
@@ -30,7 +29,7 @@ class UserService {
     }
 
     async activate(activationLink){
-        const user = await User.findOne({where:{activationLink: activationLink}});
+        const user = await User.findOne(activationLink);
         if(!user){
             throw ApiError.BadRequest('Incorrect link!');
         }
@@ -40,7 +39,7 @@ class UserService {
     }
 
     async resetPassword(email){
-        const candidate: any = await User.findOne({where: {email: email}})
+        const candidate: any = await User.findAll({where: {email}})
         if (!candidate){
             throw ApiError.BadRequest(`User ${email} is not exist!`)
         }
@@ -50,7 +49,7 @@ class UserService {
     }
 
     async login(email, password){
-        const user = await User.findOne({where: {email: email}});
+        const user = await User.findAll({where: {email}});
         if(!user){
             throw ApiError.BadRequest('Данный email не записан');
         }
@@ -84,7 +83,7 @@ class UserService {
         if (!userData || !tokenFromDb) {
             throw ApiError.UnauthorizedError();
         }
-        const user = await User.findOne({where: {idUser: userData.id}});
+        const user = await User.findAll({where: {idUser: userData.id}});
         const userDto = new userDTO(user);
         const tokens = tokenService.generateToken({...userDto});
 
@@ -101,7 +100,7 @@ class UserService {
         if(res){
             const hashPassword = await bcrypt.hash(password, 3);
              await User.update({password: hashPassword},{where: {idUser: res.idUser}});
-            let user = await User.findOne({where: {idUser: res.idUser}})
+            let user = await User.findAll({where: {idUser: res.idUser}})
             console.log(user)
             const userDTOVar = new userDTO(user);
             const tokens = tokenService.generateToken({...userDTOVar});

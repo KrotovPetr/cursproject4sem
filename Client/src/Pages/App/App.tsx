@@ -25,6 +25,7 @@ const App: FC = () => {
     const isLogin = useAppSelector((state) => state.userReducer.isLogin)
 
     useEffect(()=>{
+        console.log(isAuth())
         dispatch(changeLogin(isAuth()));
     },[])
 

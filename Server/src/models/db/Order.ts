@@ -3,8 +3,8 @@ import {UserType} from "../types/UserType";
 import {DataTypes} from "sequelize";
 import {sequelize} from "../../db";
 
-export const Order = sequelize.define<any>(
-    'goods',
+export const Order = sequelize.define<Model<any>>(
+    'orders',
     {
         idGood: {
             type: DataTypes.INTEGER,
@@ -47,6 +47,6 @@ export const Order = sequelize.define<any>(
     {
         createdAt: false,
         updatedAt: false,
-        tableName: 'goods'
+        tableName: 'orders'
     }
 );

@@ -41,6 +41,15 @@ export const AuthAPI = api.injectEndpoints({
                 },
             }),
         }),
+        verifyUserLogin: builder.mutation<any, any>({
+            query: (params) => ({
+                url: '/users/verify',
+                method: 'POST',
+                body: {
+                    refreshToken: params.refreshToken
+                }
+            })
+        })
     }),
 });
 
@@ -49,4 +58,5 @@ export const {
     useLoginUserMutation,
     useResetUserPasswordMutation,
     useSetNewPasswordMutation,
+    useVerifyUserLoginMutation
 } = AuthAPI;

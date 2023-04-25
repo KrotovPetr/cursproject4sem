@@ -4,10 +4,10 @@ export interface UserType {
     email: string,
     isActivated: boolean,
     activationLink: string
-    // firstName: string,
-    // lastName: string,
-    // login: string,
-    // birthday: string,
-    // isActive: boolean,
+    firstName: string,
+    lastName: string,
+    login: string,
+    birthday: string,
+    isActive: boolean,
 
 }

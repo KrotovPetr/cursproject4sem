@@ -11,10 +11,6 @@ export const Token = sequelize.define<any>(
             allowNull: false,
             unique: true
         },
-        idUser: {
-            type: DataTypes.NUMBER,
-            defaultValue: false
-        },
         refreshToken: {
             type: DataTypes.STRING,
             allowNull: false

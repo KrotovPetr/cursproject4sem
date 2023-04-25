@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './productCard.module.scss';
 import Lobzik from '../../Utils/Images/lobzik.jpg';
-const ProductCard: FC<any> = () => {
+const ProductCard: FC<any> = (props) => {
     return (
         <div className={styles.cardBody}>
             <div className={styles.statusInStock}>
@@ -10,17 +10,15 @@ const ProductCard: FC<any> = () => {
                 </div>
                 <p className={styles.statusText}> In Stock</p>
             </div>
-            <img src={Lobzik} alt="lobzik" className={styles.cardPicture} />
+            <img src={"data:image/png;base64," +  props.elem.image} alt="good" className={styles.cardPicture} />
             <div className={styles.feedbackContainer}>
                 <div className={styles.stars}> </div>
-                <p className={styles.reviews}> Reviews (4)</p>
+                <p className={styles.reviews}> Reviews (0)</p>
             </div>
             <p className={styles.productName}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Debitis dignissimos laborum nam obcaecati omnis perspiciatis
-                porro quo. Ducimus, molestias quis.
+                {props.elem.name}
             </p>
-            <p className={styles.productPrice}>900 &#8381;</p>
+            <p className={styles.productPrice}>{props.elem.price} &#8381;</p>
         </div>
     );
 };

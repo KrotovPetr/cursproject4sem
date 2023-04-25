@@ -7,9 +7,8 @@ import { useAppSelector } from '../../Store/Hooks/redux';
 const Home = () => {
     return (
         <div className={styles.homePage}>
-            <FeedBackSlider />
             <ProductsSlider category="New Products" />
-            <ProductsSlider category="New Products" />
+            <ProductsSlider category="Popular" />
             <FeedBackSlider />
         </div>
     );
