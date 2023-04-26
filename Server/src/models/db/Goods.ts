@@ -40,6 +40,10 @@ export const Goods = sequelize.define<Model<GoodType>>(
         weight:{
             type: DataTypes.NUMBER,
             allowNull: false
+        },
+        type:{
+            type: DataTypes.STRING,
+            allowNull: false
         }
 
 

@@ -13,12 +13,12 @@ const SliderBox = (props: any) => {
         slidesToScroll: 1,
         swipeToSlide: true,
     };
-
+    console.log(props.type)
     return (
         <div className={styles.slider}>
             <StyledSlider {...settings}>
-                {props.arr &&
-                    props.arr.map((product: any) => (
+                {props.arr && props.arr.filter((elem : any)=> {
+                    return elem.type === props.type}).map((product: any) => (
                         <ProductCard key={uuidv4()} elem={product} />
                     ))}
             </StyledSlider>

@@ -37,7 +37,6 @@ const App: FC = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="service" element={<Service />} />
                     <Route path="rent" element={<Rent />} />
-                    <Route path="supplies" element={<Supplies />} />
                     <Route path="tools" element={<Tools />} />
                     <Route path="login" element={<LoginPage />} />
                     <Route path="about" element={<AboutPage />} />

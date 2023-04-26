@@ -12,13 +12,13 @@ const ProductCard: FC<any> = (props) => {
             </div>
             <img src={"data:image/png;base64," +  props.elem.image} alt="good" className={styles.cardPicture} />
             <div className={styles.feedbackContainer}>
-                <div className={styles.stars}> </div>
+                <div className={styles.stars}> {(Math.floor(Math.random()*3+2))} &#9885;</div>
                 <p className={styles.reviews}> Reviews (0)</p>
             </div>
             <p className={styles.productName}>
                 {props.elem.name}
             </p>
-            <p className={styles.productPrice}>{props.elem.price} &#8381;</p>
+            <div className={styles.lowLevel}><p className={styles.productPrice}>{props.elem.price} &#8381;</p><div className={styles.addDiv}>Add to cart...</div></div>
         </div>
     );
 };

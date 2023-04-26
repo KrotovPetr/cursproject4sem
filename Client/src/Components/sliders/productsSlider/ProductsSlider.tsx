@@ -8,6 +8,7 @@ import {setAllGoods} from "../../../Store/Reducers/goodSlice/goodSlice";
 type TProducts = {
     category?: string;
     hasCover?: boolean;
+    type?: string
 };
 
 const ProductsSlider: FC<TProducts> = (props) => {
@@ -25,7 +26,7 @@ const ProductsSlider: FC<TProducts> = (props) => {
     return (
         <div className={styles.productsList}>
             <h1 className={styles.categoryHeader}>{props.category}</h1>
-            <SliderBox arr={goods} />
+            <SliderBox arr={goods} type={props.type}/>
         </div>
     );
 };

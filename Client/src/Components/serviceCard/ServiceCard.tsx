@@ -12,7 +12,7 @@ const ServiceCard: FC<any> = (props) => {
             <div className={styles.serviceDescription}>
                 <div className={styles.serviceHeader}>
                     <h1 className={styles.serviceName}>
-                        Samodelkin Development
+                        {props.data.name}
                     </h1>
                     <div className={styles.iconBackground}>
                         <img
@@ -24,24 +24,26 @@ const ServiceCard: FC<any> = (props) => {
                 </div>
                 <div className={styles.contacts}>
                     <div className={styles.address}>
-                        016774, Тульская область, город Видное, шоссе Чехова, 17
+                        {props.data.address}
                     </div>
                     <div className={styles.otherInfo}>
-                        <p className={styles.pText}>Phone: +7800553535</p>
+                        <p className={styles.pText}>Phone: {props.data.phone}</p>
                         <p className={styles.pText}>
-                            Email: kakoytoemail@ya.ru
+                            Email: {props.data.email}
                         </p>
-                        <p className={styles.pText}>Website: www.remont.ru</p>
+                        <p className={styles.pText}>Website: {props.data.website}</p>
                         <p className={styles.pText}>
                             Tags: #instruments #specials #head
                         </p>
                     </div>
                     <div className={styles.options}>
-                        {options.map((option) => (
-                            <img src={option} alt="Option" key={uuidv4()} />
-                        ))}
+                        <img src={Delivery} alt="Option" key={uuidv4()} />
                     </div>
-                    <div className={styles.submitButton}>
+                    <div className={styles.submitButton} onClick={
+                        ()=>{
+                            alert("You were submitted to service news and promos!")
+                        }
+                    }>
                         <Button butContent="Submit" />
                     </div>
                 </div>

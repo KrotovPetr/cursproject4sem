@@ -6,6 +6,7 @@ export interface GoodType {
     price: number,
     amount: number,
     image: string,
-    weight: number
+    weight: number,
+    type: string
 
 }

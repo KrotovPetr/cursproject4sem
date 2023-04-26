@@ -6,7 +6,7 @@ const Bar = () => {
     const [activePoint, setActive] = useState<number>(4);
     return (
         <div className={styles.mainContainer}>
-            <img className={styles.Logo} src={Logo}></img>
+            <img className={styles.Logo} src={Logo} alt={"Logo"}/>
             <div
                 className={
                     activePoint === 0 ? styles.activePoint : styles.point
@@ -20,21 +20,6 @@ const Bar = () => {
                     }}
                 >
                     Tools
-                </NavLink>
-            </div>
-            <div
-                className={
-                    activePoint === 1 ? styles.activePoint : styles.point
-                }
-            >
-                <NavLink
-                    to="/supplies"
-                    className={styles.link}
-                    onClick={(): void => {
-                        setActive(1);
-                    }}
-                >
-                    Supplies
                 </NavLink>
             </div>
             <div

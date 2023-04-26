@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './rentCard.module.scss';
 
-const RentCard: FC = () => {
+const RentCard: FC<any> = (props) => {
     return <div className={styles.rentCard}></div>;
 };
 

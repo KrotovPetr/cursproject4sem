@@ -4,9 +4,12 @@ import styles from './service.module.scss';
 import ServiceCard from '../../Components/serviceCard/ServiceCard';
 import { v4 as uuidv4 } from 'uuid';
 import Tools from '../../Utils/Images/tools.png';
+import Samodelkin from '../../Utils/Images/samodelkin.jpg';
+import MapR from '../../Utils/Images/map.png';
+import {useFetchAllServiceQuery} from "../../Store/ApiQuery/serviceService";
 
 const Service = () => {
-    const addressArr = ['Сервис', 'Сервис', 'Сервис', 'Сервис'];
+    const {data} = useFetchAllServiceQuery(100);
     return (
         <div className={styles.service}>
             <div className={styles.serviceContentContainer}>
@@ -34,11 +37,11 @@ const Service = () => {
                                 </p>
                             </div>
                         </div>
-                        <div className={styles.image}></div>
+                        <img className={styles.image} src={Samodelkin} alt={"service"}/>
                     </div>
 
                     <div className={styles.whiteDescription}>
-                        <div className={styles.image}></div>
+                        <img className={styles.image} src={MapR} alt={"Map"}/>
                         <div className={styles.descBlock}>
                             <div className={styles.label}>
                                 <img
@@ -67,7 +70,7 @@ const Service = () => {
                     <div className={styles.blackDescriptionServices}>
                         <h1 className={styles.descBlock}>Services</h1>
                         <div className={styles.serviceList}>
-                            {addressArr.map((address: any) => {
+                            {data && data.map((address: any) => {
                                 return (
                                     <ServiceCard
                                         data={address}
@@ -93,14 +96,16 @@ const Service = () => {
                             'control.FullscreenControl',
                         ]}
                     >
-                        <Placemark
-                            defaultGeometry={[55.751574, 37.573856]}
-                            properties={{
-                                hintContent: 'Собственный значок метки',
-                                balloonContent: 'Это красивая метка',
-                            }}
-                        />
-                        <Placemark defaultGeometry={[54.751574, 36.573856]} />
+                        {data && data.map((elem: any)=>{
+                            return <Placemark
+                                defaultGeometry={elem.coordinates.split(", ")}
+                                properties={{
+                                    hintContent: 'Собственный значок метки',
+                                    balloonContent: 'Это красивая метка',
+                                }}
+
+                            />
+                        })}
                     </Map>
                 </YMaps>
             </div>

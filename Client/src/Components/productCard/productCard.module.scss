@@ -53,7 +53,9 @@
         .stars {
             width: 75px;
             height: 15px;
-            background: #a1a5af;
+            padding: 0 0 0 5px;
+            font-size: 14px;
+            font-weight: bolder;
         }
 
         .reviews {
@@ -80,5 +82,20 @@
         font-weight: 600;
         font-size: 18px;
         padding: 0 0 0 25px;
+    }
+
+    .lowLevel{
+        display: flex;
+        align-self: center;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        width:100%;
+
+        .addDiv{
+            color: #0156ff;
+            font-weight: bolder;
+            font-size: 12px;
+        }
+
     }
 }
