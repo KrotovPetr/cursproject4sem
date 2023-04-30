@@ -3,6 +3,8 @@ import userService from "../services/userService";
 import {CLIENT_URL} from "../config";
 import {validationResult} from "express-validator";
 import {ApiError} from "../exceptions/apiError";
+import {User} from "../models/db/User";
+import {Order} from "../models/db/Order";
 
 class UserController {
     async registrationNewUser(req: express.Request, res: express.Response, next:express.NextFunction){
@@ -11,8 +13,8 @@ class UserController {
             if(!errors.isEmpty()){
                 return next(ApiError.BadRequest('Ошибка при валидации', errors.array()))
             }
-            const {email, password}:any = req.body;
-            const userData = await userService.registration(email, password)
+            const {email, password, lastName, firstName, birthday, phone}:any = req.body;
+            const userData = await userService.registration(email, password, lastName, firstName, birthday, phone)
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30*24*60*60*1000, httpOnly: true})
             return res.json({status:201,userData});
         } catch(e){
@@ -84,6 +86,16 @@ class UserController {
             let userData = await userService.setNewPassword(link, password);
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
             return res.status(200).json(userData);
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    async getOrdersByUser(req: express.Request, res: express.Response, next:express.NextFunction){
+        try {
+            const {id} = req.query;
+            let orders = User.findAll({include: Order, where: {idUser: id}});
+            return res.status(200).json(orders);
         } catch (e) {
             next(e);
         }

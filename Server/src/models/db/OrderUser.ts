@@ -1,29 +1,29 @@
 import {sequelize} from "../../db";
+import {Model} from "sequelize-typescript";
 import {DataTypes} from "sequelize";
 
-export const Token = sequelize.define<any>(
-    'tokens',
+export const OrderUser = sequelize.define<Model<any>>(
+    'orders_users',
     {
-        idToken: {
+        idOrdersUsers: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
             unique: true
         },
-        refreshToken: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        idUser: {
+        ordersIdOrders:{
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+        },
+        userIdUser:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
         }
     },
     {
         createdAt: false,
         updatedAt: false,
-        tableName: 'tokens'
+        tableName: 'orders_users'
     }
-
-)
+);

@@ -2,6 +2,8 @@ import {Model} from 'sequelize-typescript';
 import {DataTypes} from "sequelize";
 import {sequelize} from "../../db";
 import {GoodType} from "../types/GoodType";
+import {Order} from "./Order";
+import {GoodsOrders} from "./GoodsOrder";
 
 export const Goods = sequelize.define<Model<GoodType>>(
     'goods',
@@ -54,3 +56,6 @@ export const Goods = sequelize.define<Model<GoodType>>(
         tableName: 'goods'
     }
 );
+
+Goods.belongsToMany(Order, {through: GoodsOrders})
+Order.belongsToMany(Goods, { through: GoodsOrders, foreignKey: 'ordersIdOrders' })

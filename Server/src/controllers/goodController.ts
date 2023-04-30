@@ -1,5 +1,4 @@
 import express from "express";
-import userService from "../services/userService";
 import {Goods} from "../models/db/Goods";
 
 class GoodController {

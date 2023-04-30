@@ -15,3 +15,4 @@ userRouter.get('/activate/:link', userController.activateAccount);
 userRouter.get('/refresh', userController.refreshToken);
 // @ts-ignore
 userRouter.get('/', authMiddlewareFunc, userController.getAllUsers);
+userRouter.get('/user-orders',userController.getOrdersByUser)

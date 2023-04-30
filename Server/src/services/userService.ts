@@ -9,14 +9,15 @@ import resetLinkService from "./resetLinkService";
 import {User} from "../models/db/User";
 
 class UserService {
-    async registration(email, password){
+    async registration(email, password, lastName, firstName, birthday, phone){
         const candidate: any = await User.findAll({where:{email}})
-        if (candidate){
+        console.log(candidate)
+        if (candidate.length>0){
             throw ApiError.BadRequest(`User ${email} is already exist!`)
         }
         const hashPassword = await bcrypt.hash(password, 3);
         const activationLink = uuidv4();
-        const user = await User.create({email, password: hashPassword, activationLink});
+        const user = await User.create({email, password: hashPassword, activationLink, lastName, firstName, birthday, phone, isBanned: false});
         await mailService.sendActivationMail(email, `${API_URL}/users/activate/${activationLink}`);
         const userDTOVar = new userDTO(user);
         const tokens = tokenService.generateToken({...userDTOVar});

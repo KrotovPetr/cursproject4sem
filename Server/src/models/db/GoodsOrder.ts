@@ -3,7 +3,7 @@ import {DataTypes} from "sequelize";
 import {sequelize} from "../../db";
 
 export const GoodsOrders = sequelize.define<Model<any>>(
-    'goods',
+    'orders_goods',
     {
         idGoodsOrders: {
             type: DataTypes.INTEGER,
@@ -12,17 +12,14 @@ export const GoodsOrders = sequelize.define<Model<any>>(
             allowNull: false,
             unique: true
         },
-        idOrders:{
+        ordersIdOrders:{
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        idGoods:{
+        goodIdGood:{
             type: DataTypes.INTEGER,
             allowNull: false,
         }
-
-
-
     },
     {
         createdAt: false,

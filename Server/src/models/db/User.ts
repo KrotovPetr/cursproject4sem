@@ -2,6 +2,9 @@ import {Model} from 'sequelize-typescript';
 import {UserType} from "../types/UserType";
 import {DataTypes} from "sequelize";
 import {sequelize} from "../../db";
+import {Order} from "./Order";
+import {Token} from "./Token";
+import {ResetLink} from "./ResetLink";
 
 export const User = sequelize.define<Model<any>>(
     'users',
@@ -39,12 +42,7 @@ export const User = sequelize.define<Model<any>>(
             type: DataTypes.STRING,
             allowNull: false
         },
-        login: {
-            type: DataTypes.STRING,
-            allowNull: false
-
-        },
-        isActive: {
+        isBanned: {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
@@ -72,3 +70,12 @@ export const User = sequelize.define<Model<any>>(
         tableName: 'users'
     }
 );
+
+User.belongsToMany(Order, {through: 'orders_users', foreignKey: 'userIdUser' })
+Order.belongsToMany(User, {through: 'orders_users'})
+
+Token.hasOne(User, {foreignKey: 'idUser'})
+User.belongsTo(Token, {foreignKey: 'idUser'})
+
+User.hasOne(ResetLink, {foreignKey: 'idUser'})
+ResetLink.belongsTo(User, {foreignKey: 'idUser'})
