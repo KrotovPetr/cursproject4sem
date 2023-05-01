@@ -22,7 +22,9 @@ const LoginForm: FC = () => {
     const dispatch = useAppDispatch();
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+        console.log(data)
         let response = await loginUser(data);
+        console.log(response)
         if (!('error' in response)) {
             setCookie("accessToken",response.data.userData.accessToken, undefined)
             setCookie("refreshToken",response.data.userData.refreshToken, undefined)

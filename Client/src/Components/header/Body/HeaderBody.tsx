@@ -13,7 +13,7 @@ const HeaderBody: FC = () => {
     };
 
     const toBasket = () => {
-        navigate('/basket');
+        navigate('/cart');
     };
 
     const toSearchPage = () => {

@@ -10,6 +10,7 @@ const LoginPage = () => {
     const isLogin = useAppSelector((state) => state.userReducer.isLogin)
 
     if (isLogin) {
+        // navigate(-1);
         return <Navigate to={"/account"} />;
     }
 

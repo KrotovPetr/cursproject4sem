@@ -50,10 +50,12 @@ class UserService {
     }
 
     async login(email, password){
-        const user = await User.findAll({where: {email}});
+        const user = await User.findOne({where: {email}});
         if(!user){
             throw ApiError.BadRequest('Данный email не записан');
         }
+        // @ts-ignore
+        console.log(password+"  "+user.password)
         // @ts-ignore
         const  isPassEquals = await bcrypt.compare(password, user.password);
         if(!isPassEquals){
@@ -63,7 +65,7 @@ class UserService {
 
         const tokens = tokenService.generateToken({...userDTOVar});
         await tokenService.saveToken(userDTOVar.id, tokens.refreshToken);
-
+        console.log(tokens)
         return {
             ...tokens,
             user: userDTOVar

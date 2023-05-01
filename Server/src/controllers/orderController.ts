@@ -5,6 +5,7 @@ import { Op } from 'sequelize';
 import {GoodsOrders} from "../models/db/GoodsOrder";
 import {sequelize} from "../db";
 import {OrderUser} from "../models/db/OrderUser";
+import {User} from "../models/db/User";
 class OrderController {
     async getAllOrders(req: express.Request, res: express.Response, next:express.NextFunction){
         try{
@@ -17,25 +18,24 @@ class OrderController {
 
     async createNewOrder(req: express.Request, res: express.Response, next:express.NextFunction){
         try{
-            const {status, date, type, price, productsIds,idUser}:any = req.body;
+            const {status, date, type, price, productsIds, idUser}:any = req.body;
             const order = await Order.create({status, date, type, price});
             const num =  Math.floor(Math.random() * 10000);
-            await OrderUser.create({idOrdersUsers: Math.floor(Math.random() * 10000),userIdUser: idUser, ordersIdOrders: num})
+            console.log(await User.findOne({where: {idUser}}))
+
             const products = await Goods.findAll({ where: { idGood: { [Op.in]: productsIds } } });
 
             products.forEach((elem)=>{
                 // @ts-ignore
-                console.log(elem.idGood+'   '+order.idOrders)
-                // @ts-ignore
                 GoodsOrders.create({
-                    idGoodsOrders: num,
+                    idGoodsOrders: Math.floor(Math.random() * 10000),
                     // @ts-ignore
                     goodIdGood: elem.idGood,
                     // @ts-ignore
                     ordersIdOrders: order.get('idOrders')
                 })
             })
-
+            await OrderUser.create({idOrdersUsers: Math.floor(Math.random() * 10000), userIdUser: idUser, ordersIdOrders: order.get('idOrders')})
             return res.status(201).json("Success");
         }catch(e){
             next(e);

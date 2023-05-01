@@ -19,6 +19,7 @@ import { useAppDispatch, useAppSelector } from '../../Store/Hooks/redux';
 import ProtectedRoute from '../../Components/protectedRoute/protectedRoute';
 import {changeLogin} from "../../Store/Reducers/userSlice/userSlice";
 import {isAuth} from "../../Utils/Functions/isLogin";
+import Cart from "../Cart/cart";
 
 const App: FC = () => {
     const dispatch = useAppDispatch();
@@ -59,6 +60,7 @@ const App: FC = () => {
                         path="recover-password"
                         element={<RecoverPasswordPage />}
                     />
+                    <Route path={"cart"} element={<Cart/>}/>
                 </Routes>
                 <Options />
                 <Footer />

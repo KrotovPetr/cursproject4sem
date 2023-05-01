@@ -2,12 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IGood {
     name: string;
-    goods: any
+    goods: any,
+    currentCart: any,
+    totalPrice: number
 }
 
 const initialState: IGood = {
     name: '',
-    goods: []
+    goods: [],
+    currentCart: [],
+    totalPrice: 0
 };
 
 export const goodSlice = createSlice({
@@ -20,9 +24,14 @@ export const goodSlice = createSlice({
 
         setAllGoods(state, action: PayloadAction<any>) {
             state.goods = action.payload;
+        },
+
+        addGoodToCart(state, action: PayloadAction<any>){
+            state.currentCart = [...state.currentCart, action.payload];
+            state.totalPrice = state.totalPrice + action.payload.price;
         }
     },
 });
 
-export const {setAllGoods} = goodSlice.actions;
+export const {setAllGoods, addGoodToCart} = goodSlice.actions;
 export default goodSlice.reducer;
