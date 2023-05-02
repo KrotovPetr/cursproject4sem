@@ -7,7 +7,6 @@ import Footer from '../../Components/footer/Footer';
 import Options from '../../Components/options/Options';
 import AboutPage from '../AboutPage/AboutPage';
 import AccountPage from '../AccountPage/AccountPage';
-import Supplies from '../Supplies/Supplies';
 import Service from '../Service/Service';
 import Tools from '../Tools/Tools';
 import Rent from '../Rent/Rent';
@@ -20,6 +19,7 @@ import ProtectedRoute from '../../Components/protectedRoute/protectedRoute';
 import {changeLogin} from "../../Store/Reducers/userSlice/userSlice";
 import {isAuth} from "../../Utils/Functions/isLogin";
 import Cart from "../Cart/cart";
+import AdminPage from "../AdminPanelPage/adminPage";
 
 const App: FC = () => {
     const dispatch = useAppDispatch();
@@ -49,6 +49,16 @@ const App: FC = () => {
                                 isAuthenticated = {isLogin}
                                 authenticationPath= {"/login"}
                                 outlet={<AccountPage />}
+                            />
+                        }
+                    />
+                    <Route
+                        path="admin"
+                        element={
+                            <ProtectedRoute
+                                isAuthenticated = {isLogin}
+                                authenticationPath= {"/login"}
+                                outlet={<AdminPage />}
                             />
                         }
                     />

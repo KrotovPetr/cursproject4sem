@@ -6,6 +6,7 @@ import AddressBook from "../addressBook/addressBook";
 import MyOrders from "../myOrders/myOrders";
 import NewsSubscription from "../newsletterSubscription/newsSubscription";
 import PaymentMethods from "../storedPaymentMethods/paymentMethods";
+import AccountAdminPage from "../accountAdminPage/accountAdminPage";
 
 const AccountDataBlock = () => {
     const options:JSX.Element[] = [
@@ -14,7 +15,8 @@ const AccountDataBlock = () => {
         <AddressBook/>,
         <MyOrders/>,
         <NewsSubscription/>,
-        <PaymentMethods/>
+        <PaymentMethods/>,
+        <AccountAdminPage/>
     ];
 
     return (

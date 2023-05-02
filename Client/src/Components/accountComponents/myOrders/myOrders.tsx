@@ -1,18 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './myOrders.module.scss';
+import {useFetchAllCurrentOrdersQuery} from "../../../Store/ApiQuery/ordersService";
+import { v4 as uuidv4 } from 'uuid';
 const MyOrders = () => {
-    const orders = [1124, 17,12508,99];
-
+    const {data} = useFetchAllCurrentOrdersQuery(11);
+    useEffect(()=>{
+        console.log(data)
+    },[data])
     return (
         <div className={styles.myOrdersContainers}>
             <h1 className={styles.header}>My Orders</h1>
             <hr className={styles.line}/>
             <div className={styles.ordersContainer}>{
-                orders.map((elem)=>{
-                    return <div className={styles.orderCard}>
-                        <h3 className={styles.orderHeader}>{elem}</h3>
-                        <p className={styles.orderStatus}>Status: In progress</p>
-                        <p className={styles.orderPrice}>Total: 1123 </p>
+                data && data[0].length > 0 && data[0].map((elem: any)=>{
+                    return <div className={styles.orderCard} key={uuidv4()}>
+                        <h3 className={styles.orderHeader}>{elem.idOrders}</h3>
+                        <p className={styles.orderStatus}>Status: {elem.status}</p>
+                        <p className={styles.orderPrice}>Total: {elem.price}</p>
                     </div>
                 })
             }</div>

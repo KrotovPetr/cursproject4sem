@@ -9,7 +9,6 @@ const AccountPage: FC = () => {
     return (
         <div className={styles.accountPage}>
             <main className={styles.content}>
-                <div className={styles.breadCrumbs}>Тут крошки</div>
                 <h1 className={styles.h1Text}>My Dashboard</h1>
                 <div className={styles.options}>
                     <div className={styles.leftBlocks}>

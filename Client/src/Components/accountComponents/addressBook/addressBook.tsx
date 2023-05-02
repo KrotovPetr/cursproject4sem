@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './addressBook.module.scss';
 import {Map, Placemark, YMaps} from "@pbe/react-yandex-maps";
+import { v4 as uuidv4 } from 'uuid';
 
 const AddressBook = () => {
     const address = [
@@ -40,7 +41,7 @@ const AddressBook = () => {
             </div>
             <div className={styles.addresses}>
                 {address.map((elem)=>{
-                    return <div className={styles.address}>
+                    return <div className={styles.address} key={uuidv4()}>
                         <h1 className={styles.addHeader}>{elem}</h1>
                         <p className={styles.addDesc}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad asperiores autem distinctio esse inventore ipsa maxime provident sed tempore?</p>
                     </div>

@@ -22,7 +22,6 @@ const LoginPage = () => {
     return (
         <div className={styles.loginPage}>
             <div className={styles.loginForm}>
-                <div className={styles.breadCrumbs}>Тут крошки</div>
                 <h2 className={styles.header}>Customer Login</h2>
                 <div className={styles.infoBlocks}>
                     <div className={styles.block}>

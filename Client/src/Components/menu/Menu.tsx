@@ -11,7 +11,7 @@ const Menu: FC = () => {
         'Stored Payment Methods',
         'My Wish List',
         'Newsletter Subscription',
-        'My Product Reviews',
+        'Admin Page',
     ];
 
     return (

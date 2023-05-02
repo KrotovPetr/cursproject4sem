@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './accountDashboard.module.scss';
 import Input from "../../inputs/input/Input";
 import {FieldPath, useForm} from "react-hook-form";
+import { v4 as uuidv4 } from 'uuid';
+
 const AccountDashboard = () => {
     const fields = [
         "Name",
@@ -16,7 +18,7 @@ const AccountDashboard = () => {
             <form className={styles.fields}>
                 {
                     fields.map((elem: FieldPath<any>):JSX.Element=>{
-                        return <Input label={elem} register={register} required isReq={false}/>
+                        return <Input label={elem} register={register} required isReq={false} key={uuidv4()}/>
                     })
                 }
                 <div className={styles.button}>

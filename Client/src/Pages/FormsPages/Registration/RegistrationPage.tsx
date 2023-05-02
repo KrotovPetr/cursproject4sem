@@ -15,7 +15,6 @@ const RegistrationPage: FC = () => {
     return (
         <div className={styles.regPage}>
             <div className={styles.regForm} onSubmit={(): void => {}}>
-                <div className={styles.breadCrumbs}>Тут крошки</div>
                 <h2 className={styles.header}>Registration</h2>
                 <div className={styles.infoBlocks}>
                     <div className={styles.block}>

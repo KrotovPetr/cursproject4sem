@@ -13,7 +13,6 @@ const SliderBox = (props: any) => {
         slidesToScroll: 1,
         swipeToSlide: true,
     };
-    console.log(props.type)
     return (
         <div className={styles.slider}>
             <StyledSlider {...settings}>

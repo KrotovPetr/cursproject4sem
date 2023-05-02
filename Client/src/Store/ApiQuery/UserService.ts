@@ -49,6 +49,12 @@ export const AuthAPI = api.injectEndpoints({
                     refreshToken: params.refreshToken
                 }
             })
+        }),
+        fetchAllUsers: builder.query<any, any>({
+            query: (params) => ({
+                url: '/users',
+                method: 'GET',
+            })
         })
     }),
 });
@@ -58,5 +64,6 @@ export const {
     useLoginUserMutation,
     useResetUserPasswordMutation,
     useSetNewPasswordMutation,
-    useVerifyUserLoginMutation
+    useVerifyUserLoginMutation,
+    useFetchAllUsersQuery
 } = AuthAPI;

@@ -11,29 +11,24 @@
     z-index: 0;
 
     .statusInStock {
-        width: fit-content;
         height: fit-content;
         display: flex;
         align-self: flex-start;
         flex-flow: row nowrap;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
         column-gap: 10px;
         padding: 5px 0 0 25px;
-        color: #78a862;
         font-size: 10px;
+        width:100%;
+        font-weight:bolder;
 
-        .iconBackgroundEmpty,
-        .iconBackgroundInStock {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
-        .iconBackgroundInStock {
-            background: #78a862;
-        }
-        .iconBackgroundEmpty {
-            background: #c94d3f;
+
+
+        .delete{
+            align-self: flex-end;
+            color:#c84d3f;
+            font-size: 20px;
         }
     }
 
@@ -98,4 +93,6 @@
         }
 
     }
+
+
 }

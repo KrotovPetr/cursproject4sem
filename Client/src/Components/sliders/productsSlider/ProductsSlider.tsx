@@ -16,7 +16,6 @@ const ProductsSlider: FC<TProducts> = (props) => {
     const goods = useAppSelector(state=>state.goodReducer.goods);
     const dispatch = useAppDispatch();
     useEffect(()=>{
-        console.log(data)
         dispatch(setAllGoods(data));
     },[data])
 
