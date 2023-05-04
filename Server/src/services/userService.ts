@@ -11,7 +11,6 @@ import {User} from "../models/db/User";
 class UserService {
     async registration(email, password, lastName, firstName, birthday, phone){
         const candidate: any = await User.findAll({where:{email}})
-        console.log(candidate)
         if (candidate.length>0){
             throw ApiError.BadRequest(`User ${email} is already exist!`)
         }
@@ -55,8 +54,6 @@ class UserService {
             throw ApiError.BadRequest('Данный email не записан');
         }
         // @ts-ignore
-        console.log(password+"  "+user.password)
-        // @ts-ignore
         const  isPassEquals = await bcrypt.compare(password, user.password);
         if(!isPassEquals){
             throw ApiError.BadRequest('Incorrect Password');
@@ -65,7 +62,6 @@ class UserService {
 
         const tokens = tokenService.generateToken({...userDTOVar});
         await tokenService.saveToken(userDTOVar.id, tokens.refreshToken);
-        console.log(tokens)
         return {
             ...tokens,
             user: userDTOVar
@@ -86,10 +82,9 @@ class UserService {
         if (!userData || !tokenFromDb) {
             throw ApiError.UnauthorizedError();
         }
-        const user = await User.findAll({where: {idUser: userData.id}});
+        const user = await User.findOne({where: {idUser: userData.id}});
         const userDto = new userDTO(user);
         const tokens = tokenService.generateToken({...userDto});
-
         await tokenService.saveToken(userDto.id, tokens.refreshToken);
         return {...tokens, user: userDto}
     }
@@ -104,7 +99,6 @@ class UserService {
             const hashPassword = await bcrypt.hash(password, 3);
              await User.update({password: hashPassword},{where: {idUser: res.idUser}});
             let user = await User.findAll({where: {idUser: res.idUser}})
-            console.log(user)
             const userDTOVar = new userDTO(user);
             const tokens = tokenService.generateToken({...userDTOVar});
             await tokenService.destroyTokenByIdUser(res.idUser);

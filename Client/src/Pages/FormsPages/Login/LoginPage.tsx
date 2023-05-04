@@ -1,17 +1,30 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './loginPage.module.scss';
 import Button from '../../../Components/button/Button';
 import LoginForm from '../../../Components/forms/LoginForm/LoginForm';
 import {Navigate, useNavigate} from 'react-router-dom';
-import {useAppSelector} from "../../../Store/Hooks/redux";
+import {useAppDispatch, useAppSelector} from "../../../Store/Hooks/redux";
+import {useLazyVerifyUserLoginQuery} from "../../../Store/ApiQuery/UserService";
+import {getCookie} from "../../../Utils/Functions/getCookie";
+import {changeLogin} from "../../../Store/Reducers/userSlice/userSlice";
+import {isAuth} from "../../../Utils/Functions/isLogin";
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const isLogin = useAppSelector((state) => state.userReducer.isLogin)
+    const dispatch = useAppDispatch();
+    const {isLogin} = useAppSelector((state) => state.userReducer)
+    const [checkRefresh,{data, error}] = useLazyVerifyUserLoginQuery();
+    const refreshFunc = async (refresh: any) =>{
+        await checkRefresh(refresh)
+    }
 
+    useEffect(()=>{
+        dispatch(changeLogin(isAuth()));
+    }, [])
     if (isLogin) {
-        // navigate(-1);
         return <Navigate to={"/account"} />;
+    } else {
+
     }
 
     const toRegistration = (): void => {

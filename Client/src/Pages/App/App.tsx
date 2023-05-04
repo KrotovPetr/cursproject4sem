@@ -16,19 +16,15 @@ import RegistrationPage from '../FormsPages/Registration/RegistrationPage';
 import LoginPage from '../FormsPages/Login/LoginPage';
 import { useAppDispatch, useAppSelector } from '../../Store/Hooks/redux';
 import ProtectedRoute from '../../Components/protectedRoute/protectedRoute';
-import {changeLogin} from "../../Store/Reducers/userSlice/userSlice";
-import {isAuth} from "../../Utils/Functions/isLogin";
+import {changeLogin, setRefreshToken} from "../../Store/Reducers/userSlice/userSlice";
 import Cart from "../Cart/cart";
 import AdminPage from "../AdminPanelPage/adminPage";
+import {getCookie} from "../../Utils/Functions/getCookie";
+import {useLazyVerifyUserLoginQuery} from "../../Store/ApiQuery/UserService";
+import {setCookie} from "../../Utils/Functions/setCookie";
 
 const App: FC = () => {
-    const dispatch = useAppDispatch();
-    const isLogin = useAppSelector((state) => state.userReducer.isLogin)
-
-    useEffect(()=>{
-        console.log(isAuth())
-        dispatch(changeLogin(isAuth()));
-    },[])
+    const {isLogin} = useAppSelector((state) => state.userReducer)
 
     return (
         <div>

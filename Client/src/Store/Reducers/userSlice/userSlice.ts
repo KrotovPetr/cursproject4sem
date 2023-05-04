@@ -8,6 +8,7 @@ interface IUserSlice {
     userToken: null | string;
     fetchErrorData: string;
     isLogin: boolean;
+    refreshToken: string;
 }
 
 const initialState: IUserSlice = {
@@ -18,6 +19,7 @@ const initialState: IUserSlice = {
     userToken: null,
     fetchErrorData: '',
     isLogin: false,
+    refreshToken:""
 };
 
 export const userSlice = createSlice({
@@ -27,8 +29,12 @@ export const userSlice = createSlice({
         changeLogin(state, action: PayloadAction<boolean>) {
             state.isLogin = action.payload;
         },
+
+        setRefreshToken(state, action: PayloadAction<any>){
+            state.refreshToken = action.payload;
+        }
     },
 });
-export const { changeLogin } = userSlice.actions
+export const { changeLogin, setRefreshToken } = userSlice.actions
 
 export default userSlice.reducer;

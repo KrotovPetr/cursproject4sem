@@ -52,7 +52,7 @@ class UserController {
     }
     async refreshToken(req: express.Request, res: express.Response, next:express.NextFunction){
         try {
-            const {refreshToken} = req.cookies;
+            const {refreshToken} = req.query;
             const userData = await userService.refresh(refreshToken);
             res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true})
             return res.status(201).json(userData);
@@ -96,6 +96,17 @@ class UserController {
             const {id} = req.query;
             let orders = User.findAll({include: Order, where: {idUser: id}});
             return res.status(200).json(orders);
+        } catch (e) {
+            next(e);
+        }
+    }
+
+    async changeUserBan(req: express.Request, res: express.Response, next:express.NextFunction){
+        try {
+            const {email, isBanned} = req.body;
+            let banStatus = isBanned === "1";
+            let orders = await User.update({isBanned: banStatus},{where: {email}});
+            return res.status(201).json("Success");
         } catch (e) {
             next(e);
         }

@@ -11,7 +11,6 @@ export const OrderAPI = api.injectEndpoints({
                 url: `/orders/all`,
                 method: 'GET',
             }) ,
-
             providesTags: result => ['order']
         }),
         createNewOrder: builder.mutation<any, any>({
@@ -25,9 +24,9 @@ export const OrderAPI = api.injectEndpoints({
                     type: params.type,
                     productsIds: params.productsIds,
                     idUser: params.idUser
-                },
-                invalidatesTags: ['order']
-            })
+                }
+            }),
+            invalidatesTags: ['order']
         }),
         updateOrder: builder.mutation<any, any>({
             query: (params) => ({
@@ -37,9 +36,9 @@ export const OrderAPI = api.injectEndpoints({
                    status: params.status,
                    idOrders: params.idOrders
                 },
-                transformResponse: (response: any, data: any) => data,
-                invalidatesTags: ['order']
-            })
+
+            }),
+            invalidatesTags: ['order']
         })
     }),
 });

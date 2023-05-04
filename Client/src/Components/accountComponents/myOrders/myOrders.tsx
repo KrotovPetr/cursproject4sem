@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 const MyOrders = () => {
     const {data} = useFetchAllCurrentOrdersQuery(11);
     useEffect(()=>{
-        console.log(data)
     },[data])
     return (
         <div className={styles.myOrdersContainers}>

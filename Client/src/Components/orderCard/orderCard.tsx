@@ -7,7 +7,6 @@ const OrderCard = (props: any) => {
         event: React.ChangeEvent<HTMLSelectElement>
     ) => {
         await props.callback({idOrders: props.elem.idOrders, status: event.target.value});
-        props.checkStatus(event.target.value);
     };
 
     useEffect(()=>{},[props.elem])

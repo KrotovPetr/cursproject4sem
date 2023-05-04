@@ -21,6 +21,7 @@ export const AuthAPI = api.injectEndpoints({
                     password: params.Password,
                 },
             }),
+            invalidatesTags: ['User']
         }),
         resetUserPassword: builder.mutation<any, any>({
             query: (params) => ({
@@ -30,6 +31,7 @@ export const AuthAPI = api.injectEndpoints({
                     email: params.Email,
                 },
             }),
+            invalidatesTags: ['User']
         }),
         setNewPassword: builder.mutation<any, any>({
             query: (params) => ({
@@ -40,21 +42,29 @@ export const AuthAPI = api.injectEndpoints({
                     password: params.password,
                 },
             }),
+            invalidatesTags: ['User']
         }),
-        verifyUserLogin: builder.mutation<any, any>({
+        changeUserBan: builder.mutation<any, any>({
             query: (params) => ({
-                url: '/users/verify',
-                method: 'POST',
+                url: '/users/ban',
+                method: 'PATCH',
                 body: {
-                    refreshToken: params.refreshToken
-                }
-            })
+                    email: params.email,
+                    isBanned: params.isBanned,
+                },
+            }),
+            invalidatesTags: ['User']
+        }),
+        verifyUserLogin: builder.query<any, any>({
+            query: (refreshToken) => `/users/refresh?refreshToken=${refreshToken}`,
+            providesTags: result => ['User']
         }),
         fetchAllUsers: builder.query<any, any>({
             query: (params) => ({
                 url: '/users',
                 method: 'GET',
-            })
+            }),
+            providesTags: result => ['User']
         })
     }),
 });
@@ -64,6 +74,7 @@ export const {
     useLoginUserMutation,
     useResetUserPasswordMutation,
     useSetNewPasswordMutation,
-    useVerifyUserLoginMutation,
-    useFetchAllUsersQuery
+    useLazyVerifyUserLoginQuery,
+    useFetchAllUsersQuery,
+    useChangeUserBanMutation
 } = AuthAPI;

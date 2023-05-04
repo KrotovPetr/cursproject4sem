@@ -13,8 +13,6 @@ const AccountPage: FC = () => {
                 <div className={styles.options}>
                     <div className={styles.leftBlocks}>
                         <Menu />
-                        <CompareList />
-                        <WishList />
                     </div>
                     <AccountDataBlock />
                 </div>

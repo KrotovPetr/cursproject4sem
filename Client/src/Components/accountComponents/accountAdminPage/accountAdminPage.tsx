@@ -8,7 +8,6 @@ const AccountAdminPage = () => {
             <h1 className={styles.header}>Admin Page</h1>
             <hr className={styles.line}/>
             <NavLink to={"/admin"} className={styles.navLink}>To admin page...</NavLink>
-
         </div>
     );
 };

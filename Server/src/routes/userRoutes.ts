@@ -1,7 +1,6 @@
 import Router from 'express';
 import userController from "../controllers/userController";
 import {body} from 'express-validator';
-import {authMiddlewareFunc} from "../middlewares/authMiddleware";
 
 export const userRouter = Router();
 userRouter.post('/login', userController.loginToAccount);
@@ -14,5 +13,7 @@ userRouter.patch('/new-password',body('password').isLength({min:3, max:32}),user
 userRouter.get('/activate/:link', userController.activateAccount);
 userRouter.get('/refresh', userController.refreshToken);
 // @ts-ignore
-userRouter.get('/', authMiddlewareFunc, userController.getAllUsers);
+userRouter.get('/', userController.getAllUsers);
 userRouter.get('/user-orders',userController.getOrdersByUser)
+
+userRouter.patch("/ban", userController.changeUserBan)

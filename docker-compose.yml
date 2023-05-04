@@ -1,0 +1,43 @@
+version: '3.9'
+services:
+  postgres:
+    container_name: toolsDb
+    restart: always
+    build:
+      context: Server/sql
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: tools
+    ports:
+      - '5434:5432'
+  app:
+    container_name: kaspserver
+    build:
+      context: Server
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_DATABASE: tools
+    ports:
+      - '5000:5000'
+    depends_on:
+      - postgres
+
+  front:
+    container_name: kaspfront
+    build:
+      context: Client
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - '3000:3000'
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8080:8080'
