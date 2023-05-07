@@ -38,11 +38,16 @@ export const goodSlice = createSlice({
             state.totalPrice = action.payload.newPrice;
         },
 
+        clearCart(state){
+                state.currentCart =[];
+                state.totalPrice =0;
+        },
+
         setOrderList(state, action: PayloadAction<any>){
             state.order = state.order + action.payload;
         }
     },
 });
 
-export const {setAllGoods, addGoodToCart, deleteFromCurrentCart, setOrderList} = goodSlice.actions;
+export const {setAllGoods, addGoodToCart, deleteFromCurrentCart, setOrderList, clearCart} = goodSlice.actions;
 export default goodSlice.reducer;

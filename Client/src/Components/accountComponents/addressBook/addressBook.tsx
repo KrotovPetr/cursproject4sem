@@ -1,14 +1,12 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styles from './addressBook.module.scss';
 import {Map, Placemark, YMaps} from "@pbe/react-yandex-maps";
 import { v4 as uuidv4 } from 'uuid';
+import {useFetchAllServiceQuery} from "../../../Store/ApiQuery/serviceService";
 
 const AddressBook = () => {
-    const address = [
-        "Москва",
-        "Чебаркуль",
-        "Минск"
-    ]
+    const {data} = useFetchAllServiceQuery(100);
+    // useEffect(()=>{},[data])
     return (
         <div className={styles.addressBook}>
             <h1 className={styles.header}>Address Book</h1>
@@ -28,22 +26,28 @@ const AddressBook = () => {
                             'control.FullscreenControl',
                         ]}
                     >
-                        <Placemark
-                            defaultGeometry={[55.751574, 37.573856]}
-                            properties={{
-                                hintContent: 'Собственный значок метки',
-                                balloonContent: 'Это красивая метка',
-                            }}
-                        />
-                        <Placemark defaultGeometry={[54.751574, 36.573856]} />
+                        { data && data.map((elem: any)=>
+                        {
+                            let coord = elem.coordinates.split(" ");
+                            coord = coord.map((el: any)=>Number.parseFloat(el));
+                             return <Placemark geometry={coord}
+                                properties={{
+
+                                    hintContent: 'Собственный значок метки',
+                                    balloonContent: 'Это красивая метка',
+
+                                }}
+                            />
+                        })
+                        }
                     </Map>
                 </YMaps>
             </div>
             <div className={styles.addresses}>
-                {address.map((elem)=>{
+                {data && data.map((elem: any)=>{
                     return <div className={styles.address} key={uuidv4()}>
-                        <h1 className={styles.addHeader}>{elem}</h1>
-                        <p className={styles.addDesc}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad asperiores autem distinctio esse inventore ipsa maxime provident sed tempore?</p>
+                        <h1 className={styles.addHeader}>{elem.name}</h1>
+                        <p className={styles.addDesc}>{elem.address}</p>
                     </div>
                 })}
             </div>

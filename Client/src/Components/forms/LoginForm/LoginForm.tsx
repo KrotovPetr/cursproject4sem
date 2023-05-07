@@ -8,7 +8,7 @@ import {setCookie} from "../../../Utils/Functions/setCookie";
 import {getCookie} from "../../../Utils/Functions/getCookie";
 import {useAppDispatch, useAppSelector} from "../../../Store/Hooks/redux";
 import {isAuth} from "../../../Utils/Functions/isLogin";
-import {changeLogin} from "../../../Store/Reducers/userSlice/userSlice";
+import {changeLogin, setUserData} from "../../../Store/Reducers/userSlice/userSlice";
 
 interface IFormInput {
     email: string;
@@ -23,11 +23,12 @@ const LoginForm: FC = () => {
 
     const onSubmit: SubmitHandler<IFormInput> = async (data) => {
         let response = await loginUser(data);
+
         if (!('error' in response)) {
             setCookie("accessToken",response.data.userData.accessToken, undefined)
             setCookie("refreshToken",response.data.userData.refreshToken, undefined)
+            setCookie("userData",`${response.data.userData.user.email} ${response.data.userData.user.firstName} ${response.data.userData.user.lastName}`, undefined)
             dispatch(changeLogin(true));
-            console.log(getCookie("refreshToken"))
 
         } else {
             navigate('/registration');

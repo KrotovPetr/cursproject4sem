@@ -26,7 +26,7 @@ const Input = ({ label, register, required, isReq = true, defaultValue = ""}: In
                 {isReq && <span className={styles.labelSpan}>*</span>}
             </label>
             <input
-                defaultValue={defaultValue}
+               placeholder={defaultValue}
                 {...register(label, { required })}
                 className={styles.input}
             />

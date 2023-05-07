@@ -14,6 +14,8 @@ userRouter.get('/activate/:link', userController.activateAccount);
 userRouter.get('/refresh', userController.refreshToken);
 // @ts-ignore
 userRouter.get('/', userController.getAllUsers);
-userRouter.get('/user-orders',userController.getOrdersByUser)
+userRouter.get('/user-orders',userController.getOrdersByUser);
+userRouter.get('/current', userController.getUserByData);
 
-userRouter.patch("/ban", userController.changeUserBan)
+userRouter.patch("/ban", userController.changeUserBan);
+

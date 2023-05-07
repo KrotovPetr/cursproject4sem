@@ -6,8 +6,8 @@ const Tools = () => {
     return (
         <div className={styles.toolsPage}>
             <div className={styles.toolsContent}>
-                <ProductsSlider category="New Products" type={"tool"}/>
-                <ProductsSlider category="New Products" type={"tool"}/>
+                <ProductsSlider category="Tools" type={"tool"}/>
+                <ProductsSlider category="Consumables" type={"consumables"}/>
             </div>
         </div>
     );

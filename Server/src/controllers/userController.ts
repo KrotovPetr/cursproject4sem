@@ -112,6 +112,17 @@ class UserController {
         }
     }
 
+    async getUserByData(req: express.Request, res: express.Response, next:express.NextFunction){
+        try {
+            const {idUser} = req.body;
+            const user = await User.findByPk(idUser)
+            return res.status(200).json({user});
+        } catch (e) {
+            next(e);
+        }
+    }
+
+
 }
 
 

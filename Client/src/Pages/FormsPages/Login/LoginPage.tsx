@@ -13,14 +13,11 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {isLogin} = useAppSelector((state) => state.userReducer)
-    const [checkRefresh,{data, error}] = useLazyVerifyUserLoginQuery();
-    const refreshFunc = async (refresh: any) =>{
-        await checkRefresh(refresh)
-    }
 
     useEffect(()=>{
         dispatch(changeLogin(isAuth()));
     }, [])
+
     if (isLogin) {
         return <Navigate to={"/account"} />;
     } else {

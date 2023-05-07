@@ -12,6 +12,7 @@ export const AuthAPI = api.injectEndpoints({
                 },
             }),
         }),
+
         loginUser: builder.mutation<any, any>({
             query: (params) => ({
                 url: '/users/login',

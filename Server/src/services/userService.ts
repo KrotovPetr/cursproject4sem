@@ -7,6 +7,7 @@ import {API_URL} from "../config";
 import {ApiError} from "../exceptions/apiError";
 import resetLinkService from "./resetLinkService";
 import {User} from "../models/db/User";
+import {where} from "sequelize";
 
 class UserService {
     async registration(email, password, lastName, firstName, birthday, phone){
@@ -37,6 +38,7 @@ class UserService {
         user.isActivated = true;
         await user.save();
     }
+
 
     async resetPassword(email){
         const candidate: any = await User.findAll({where: {email}})
