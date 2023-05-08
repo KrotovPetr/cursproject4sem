@@ -7,7 +7,6 @@ import {API_URL} from "../config";
 import {ApiError} from "../exceptions/apiError";
 import resetLinkService from "./resetLinkService";
 import {User} from "../models/db/User";
-import {where} from "sequelize";
 
 class UserService {
     async registration(email, password, lastName, firstName, birthday, phone){
@@ -42,12 +41,13 @@ class UserService {
 
     async resetPassword(email){
         const candidate: any = await User.findAll({where: {email}})
+        console.log(candidate)
         if (!candidate){
             throw ApiError.BadRequest(`User ${email} is not exist!`)
         }
         const resetLink = uuidv4();
-        await resetLinkService.create(candidate.idUser, resetLink);
-        await mailService.sendResetPasswordMail(email, `${API_URL}/users/new-password/${resetLink}`);
+        await resetLinkService.create(candidate[0].idUser, resetLink);
+        await mailService.sendResetPasswordMail(email, resetLink);
     }
 
     async login(email, password){
@@ -61,9 +61,11 @@ class UserService {
             throw ApiError.BadRequest('Incorrect Password');
         }
         const userDTOVar = new userDTO(user);
-
+        console.log(userDTOVar)
         const tokens = tokenService.generateToken({...userDTOVar});
+        console.log(tokens)
         await tokenService.saveToken(userDTOVar.id, tokens.refreshToken);
+
         return {
             ...tokens,
             user: userDTOVar
@@ -84,7 +86,8 @@ class UserService {
         if (!userData || !tokenFromDb) {
             throw ApiError.UnauthorizedError();
         }
-        const user = await User.findOne({where: {idUser: userData.id}});
+        console.log(userData)
+        const user = await User.findOne({where: {idUser: userData}});
         const userDto = new userDTO(user);
         const tokens = tokenService.generateToken({...userDto});
         await tokenService.saveToken(userDto.id, tokens.refreshToken);

@@ -7,6 +7,7 @@ import Button from "../../Components/button/Button";
 import {useNavigate} from "react-router-dom";
 import {useCreateNewOrderMutation} from "../../Store/ApiQuery/ordersService";
 import {clearCart} from "../../Store/Reducers/goodSlice/goodSlice";
+import {getCookie} from "../../Utils/Functions/getCookie";
 
 const Cart = () => {
     const {currentCart, totalPrice} = useAppSelector((state)=>state.goodReducer)
@@ -19,8 +20,14 @@ const Cart = () => {
                 return elem.idGood;
             })
             let currentDate = new Date();
-            createNewOrder({date: currentDate, status: "In work", price: totalPrice, type: "self", productsIds: indexArr, idUser: "11"})
-            dispatch(clearCart());
+            let id = getCookie("userData")?.split(" ")[3];
+            if(indexArr.length>0){
+                createNewOrder({date: currentDate, status: "In work", price: totalPrice, type: "self", productsIds: indexArr, idUser: id})
+                dispatch(clearCart());
+            } else {
+                alert("Cart is empty!");
+            }
+
         } else {
             navigate("/login");
         }
@@ -35,9 +42,7 @@ const Cart = () => {
                   return <ProductCard key={uuidv4()} elem={elem}/>
               })}
           </div>
-            <div className={styles.lowLevel}><div className={styles.totalPrice}>Price: {totalPrice} &#8381;</div><div className={styles.button} onClick={()=>{
-                filterOrder();
-            }}><Button butContent={"Pay"}/></div></div>
+            <div className={styles.lowLevel}><div className={styles.totalPrice}>Price: {totalPrice} &#8381;</div><div className={styles.button} onClick={filterOrder}><Button butContent={"Pay"}/></div></div>
         </div>
     );
 };

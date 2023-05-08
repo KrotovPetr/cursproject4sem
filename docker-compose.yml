@@ -22,10 +22,19 @@ services:
       DB_USER: postgres
       DB_PASSWORD: postgres
       DB_DATABASE: tools
+      JWT_ACCESS_SECRET: jwt-access-key
+      JWT_REFRESH_SECRET: jwt-refresh-key
+      SMTP_HOST: smtp.mail.ru
+      SMTP_USER: tools.shop@bk.ru
+      SMTP_PASSWORD: eYZhrufgBvjpzHFwsm4G
+      SMTP_PORT: 465
+      API_URL: http://localhost:5000
+      CLIENT_URL: https://ya.ru
     ports:
       - '5000:5000'
     depends_on:
       - postgres
+
 
   front:
     container_name: kaspfront

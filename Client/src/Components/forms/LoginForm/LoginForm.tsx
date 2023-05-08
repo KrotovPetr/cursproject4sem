@@ -27,7 +27,7 @@ const LoginForm: FC = () => {
         if (!('error' in response)) {
             setCookie("accessToken",response.data.userData.accessToken, undefined)
             setCookie("refreshToken",response.data.userData.refreshToken, undefined)
-            setCookie("userData",`${response.data.userData.user.email} ${response.data.userData.user.firstName} ${response.data.userData.user.lastName}`, undefined)
+            setCookie("userData",`${response.data.userData.user.email} ${response.data.userData.user.firstName} ${response.data.userData.user.lastName} ${response.data.userData.user.id}`, undefined)
             dispatch(changeLogin(true));
 
         } else {

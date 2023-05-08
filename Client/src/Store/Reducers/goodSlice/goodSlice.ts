@@ -5,7 +5,8 @@ interface IGood {
     goods: any,
     currentCart: any,
     totalPrice: number,
-    order: any
+    order: any,
+    url: string
 }
 
 const initialState: IGood = {
@@ -13,7 +14,8 @@ const initialState: IGood = {
     goods: [],
     currentCart: [],
     totalPrice: 0,
-    order: 0
+    order: 0,
+    url: ""
 };
 
 export const goodSlice = createSlice({
@@ -45,9 +47,14 @@ export const goodSlice = createSlice({
 
         setOrderList(state, action: PayloadAction<any>){
             state.order = state.order + action.payload;
+        },
+
+        changeURL(state, action: PayloadAction<any>){
+            state.url = action.payload;
         }
+
     },
 });
 
-export const {setAllGoods, addGoodToCart, deleteFromCurrentCart, setOrderList, clearCart} = goodSlice.actions;
+export const {setAllGoods, addGoodToCart, deleteFromCurrentCart, setOrderList, clearCart, changeURL} = goodSlice.actions;
 export default goodSlice.reducer;

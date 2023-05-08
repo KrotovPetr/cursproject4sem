@@ -12,16 +12,16 @@ class ResetLinkService {
     }
 
     async checkValidity(resetLink){
-        let link = await ResetLink.findOne({where:{link: resetLink}});
-        if(!link){
+        let link = await ResetLink.findAll({where:{link: resetLink}});
+        if(!link[0]){
             throw ApiError.BadRequest(`Link not found!`)
         }
         let timestamp = Date.now();
         await this.drop(resetLink)
-        if(link["end_time"]<timestamp){
+        if(link[0]["end_time"]<timestamp){
             return null;
         } else {
-            return {status: 200, data:"Valid", idUser: link.idUser}
+            return {status: 200, data:"Valid", idUser: link[0].idUser}
         }
     }
 }

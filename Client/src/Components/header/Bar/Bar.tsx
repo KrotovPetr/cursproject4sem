@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './bar.module.scss';
 import Logo from '../../../Utils/Images/logo2.png';
 import { NavLink } from 'react-router-dom';
+import {useAppSelector} from "../../../Store/Hooks/redux";
 const Bar = () => {
+    const url = useAppSelector(state=>state.goodReducer.url);
+
     const getURL = () =>{
-        let URL = window.location.href;
-        let URLArr = URL.split('/');
-        switch(URLArr[3]){
-            case "tools":  return 0; break;
-            case "service": return 2; break;
-            case "rent": return 3; break;
-            case "": return 4; break;
-            default: return 5;
+       if(url === "tools"){
+           return 0;
+       }
+        if(url === "service"){
+            return 2;
         }
+        if(url === "rent"){
+            return 3;
+        }
+        if(url === ""){
+            return 4;
+        }
+        return 5;
     }
-    const [activePoint, setActive] = useState<number>(getURL);
+    const [activePoint, setActive] = useState<number>(0);
+
+    useEffect(()=>{
+        setActive(getURL)
+    },[url])
+
     return (
         <div className={styles.mainContainer}>
             <img className={styles.Logo} src={Logo} alt={"Logo"}/>
@@ -27,7 +39,7 @@ const Bar = () => {
                     to="/tools"
                     className={styles.link}
                     onClick={(): void => {
-                        setActive(0);
+
                     }}
                 >
                     Tools
@@ -42,7 +54,7 @@ const Bar = () => {
                     to="/service"
                     className={styles.link}
                     onClick={(): void => {
-                        setActive(2);
+
                     }}
                 >
                     Service
@@ -57,7 +69,7 @@ const Bar = () => {
                     to="/rent"
                     className={styles.link}
                     onClick={(): void => {
-                        setActive(3);
+
                     }}
                 >
                     Rent
@@ -72,7 +84,7 @@ const Bar = () => {
                     to="/"
                     className={styles.link}
                     onClick={(): void => {
-                        setActive(4);
+
                     }}
                 >
                     Our deals

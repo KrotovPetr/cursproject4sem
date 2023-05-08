@@ -10,7 +10,8 @@ const RegForm: FC = () => {
     const { register, handleSubmit } = useForm<any>();
     const onSubmit: SubmitHandler<any> = async (data) => {
         if (data.Password.localeCompare(data['Repeat Password']) === 0) {
-            let response = await registerUser(data);
+            const newData = {firstName: data['First Name'], lastName: data["Last Name"], phone: data["Phone"], email: data["Email"], password: data["Password"], birthday: new Date()}
+            let response = await registerUser(newData);
             if (!('error' in response)) {
                 navigate('/');
             } else {
@@ -26,6 +27,9 @@ const RegForm: FC = () => {
                 <Input label="Email" register={register} required />
                 <Input label="Password" register={register} required />
                 <Input label="Repeat Password" register={register} required />
+                <Input label="Last Name" register={register} required />
+                <Input label="First Name" register={register} required />
+                <Input label="Phone" register={register} required />
                 <div className={styles.formLinks}>
                     <div className={styles.button}>
                         <input

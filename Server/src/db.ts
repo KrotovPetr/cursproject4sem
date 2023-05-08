@@ -1,9 +1,9 @@
 import {Sequelize} from 'sequelize-typescript';
 
-export const sequelize = new Sequelize('tools', 'postgres', '123456',
+export const sequelize = new Sequelize('tools', 'postgres', 'postgres',
    {
         dialect: 'postgres',
-        host: 'localhost',
+        host: 'postgres',
         port: 5432,
         models: [__dirname + '/models'],
         logging: (...msg) => {

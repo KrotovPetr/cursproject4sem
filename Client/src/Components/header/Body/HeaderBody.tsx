@@ -1,12 +1,20 @@
-import React, { FC } from 'react';
+import React, {FC, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './headerBody.module.scss';
 import Bar from '../Bar/Bar';
 import Loop from '../../../Utils/Images/Loop.png';
 import Basket from '../../../Utils/Images/basket.png';
 import User from '../../../Utils/Images/user.png';
+import {useAppDispatch} from "../../../Store/Hooks/redux";
+import {changeURL} from "../../../Store/Reducers/goodSlice/goodSlice";
 const HeaderBody: FC = () => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    useEffect(()=>{
+        const url = window.location.href.split("/")[3];
+        dispatch(changeURL(url))
+    },[window.location.href])
 
     const toAccount = () => {
         navigate('/account');
@@ -19,6 +27,9 @@ const HeaderBody: FC = () => {
     const toSearchPage = () => {
         navigate('/search');
     };
+
+
+
 
     return (
         <div className={styles.mainContainer}>

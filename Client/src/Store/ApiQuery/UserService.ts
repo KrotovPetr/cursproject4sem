@@ -6,10 +6,7 @@ export const AuthAPI = api.injectEndpoints({
             query: (params) => ({
                 url: '/users/registration',
                 method: 'POST',
-                body: {
-                    email: params.Email,
-                    password: params.Password,
-                },
+                body: params,
             }),
         }),
 
