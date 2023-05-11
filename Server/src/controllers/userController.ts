@@ -5,6 +5,7 @@ import {validationResult} from "express-validator";
 import {ApiError} from "../exceptions/apiError";
 import {User} from "../models/db/User";
 import {Order} from "../models/db/Order";
+import {Service} from "../models/db/Service";
 
 class UserController {
     async registrationNewUser(req: express.Request, res: express.Response, next:express.NextFunction){
@@ -95,7 +96,7 @@ class UserController {
     async getOrdersByUser(req: express.Request, res: express.Response, next:express.NextFunction){
         try {
             const {id} = req.query;
-            let orders = User.findAll({include: Order, where: {idUser: id}});
+            let orders = await Order.findAll( {where: {idUser: id}});
             return res.status(200).json(orders);
         } catch (e) {
             next(e);

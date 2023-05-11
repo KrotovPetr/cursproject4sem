@@ -4,8 +4,8 @@ import {Goods} from "../models/db/Goods";
 import { Op } from 'sequelize';
 import {GoodsOrders} from "../models/db/GoodsOrder";
 import {sequelize} from "../db";
-import {OrderUser} from "../models/db/OrderUser";
 import {User} from "../models/db/User";
+import {Service} from "../models/db/Service";
 class OrderController {
     async getAllOrdersByGoods(req: express.Request, res: express.Response, next:express.NextFunction){
         try{
@@ -28,7 +28,7 @@ class OrderController {
     async getAllOrdersByUser(req: express.Request, res: express.Response, next:express.NextFunction){
         try{
             const {idUser} = req.query;
-            const orders = await sequelize.query(`SELECT * FROM orders JOIN orders_users ON orders."idOrders" = orders_users."ordersIdOrders" JOIN users ON orders_users."userIdUser" = users."idUser" WHERE users."idUser" = ${idUser};`);
+            const orders = await Order.findAll({include: Service, where: {idUser}});
             return res.status(201).json(orders);
         }catch(e){
             next(e);
@@ -46,9 +46,12 @@ class OrderController {
     }
     async createNewOrder(req: express.Request, res: express.Response, next:express.NextFunction){
         try{
-            const {status, date, type, price, productsIds, idUser}:any = req.body;
-            const order = await Order.create({status, date, type, price});
+            const {status, date, type, price, productsIds, idUser, idService}:any = req.body;
+            console.log(1)
+            const order = await Order.create({status, date, type, price, idUser, idService});
+            console.log(1)
             const num =  Math.floor(Math.random() * 10000);
+
             console.log(await User.findOne({where: {idUser}}))
 
             const products = await Goods.findAll({ where: { idGood: { [Op.in]: productsIds } } });
@@ -63,7 +66,6 @@ class OrderController {
                     ordersIdOrders: order.get('idOrders')
                 })
             })
-            await OrderUser.create({idOrdersUsers: Math.floor(Math.random() * 10000), userIdUser: idUser, ordersIdOrders: order.get('idOrders')})
             return res.status(201).json("Success");
         }catch(e){
             next(e);

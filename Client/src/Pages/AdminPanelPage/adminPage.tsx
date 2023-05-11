@@ -12,6 +12,7 @@ const AdminPage = () => {
     const {data:fetchedData} = useFetchAllOrdersQuery(100);
     const {data:fetchedUser} = useFetchAllUsersQuery(100);
 
+
     return (
         <div className={styles.adminPageContainer}>
             <div className={styles.adminPage}>

@@ -11,14 +11,17 @@ const MyOrders = () => {
             <h1 className={styles.header}>My Orders</h1>
             <hr className={styles.line}/>
             <div className={styles.ordersContainer}>{
-                data && data[0].length > 0 && data[0].map((elem: any)=>{
+                data && data.map((elem: any)=>{
                     return <div className={styles.orderCard} key={uuidv4()}>
                         <h3 className={styles.orderHeader}>{elem.idOrders}</h3>
                         <p className={styles.orderStatus}>Status: {elem.status}</p>
+                        <p className={styles.orderStatus}>Status: {elem.idService}</p>
                         <p className={styles.orderPrice}>Total: {elem.price}</p>
                     </div>
                 })
-            }</div>
+            }
+
+            </div>
         </div>
     );
 };

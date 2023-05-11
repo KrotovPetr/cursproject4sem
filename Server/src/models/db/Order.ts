@@ -1,6 +1,8 @@
 import {Model} from 'sequelize-typescript';
 import {DataTypes} from "sequelize";
 import {sequelize} from "../../db";
+import {User} from "./User";
+import {Service} from "./Service";
 
 export const Order = sequelize.define<Model<any>>(
     'orders',
@@ -11,6 +13,14 @@ export const Order = sequelize.define<Model<any>>(
             autoIncrement: true,
             allowNull: false,
             unique: true
+        },
+        idUser: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        idService: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         date: {
             type: DataTypes.STRING,
@@ -35,3 +45,6 @@ export const Order = sequelize.define<Model<any>>(
         tableName: 'orders'
     }
 );
+
+Order.hasOne(Service, {foreignKey: 'idService'})
+Service.belongsTo(Order, {foreignKey: 'idService'})

@@ -3,7 +3,8 @@ export class userDTO {
     id;
     isActivated;
     firstName;
-    lastName
+    lastName;
+    role
 
     constructor(model) {
         this.firstName = model.firstName;
@@ -11,6 +12,7 @@ export class userDTO {
         this.email = model.email;
         this.id = model.idUser;
         this.isActivated = model.isActivated;
+        this.role = model.role;
     }
 }
 

@@ -16,6 +16,7 @@ const OrderCard = (props: any) => {
             <div className={styles.header}>
                 <h1 className={styles.cardHeader}> №{props.elem.idOrders}</h1>
                 <p className={styles.status}>{props.elem.status}</p>
+                <p className={styles.status}>Service: #{ props.elem.idService}</p>
                 <p className={styles.status}>{props.elem.price} &#8381;</p>
             </div>
             <div className={styles.selectorContainer}>

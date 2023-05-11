@@ -23,7 +23,8 @@ export const OrderAPI = api.injectEndpoints({
                     price: params.price,
                     type: params.type,
                     productsIds: params.productsIds,
-                    idUser: params.idUser
+                    idUser: params.idUser,
+                    idService: params.idService
                 }
             }),
             invalidatesTags: ['order']

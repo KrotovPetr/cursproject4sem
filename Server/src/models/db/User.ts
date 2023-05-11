@@ -4,7 +4,6 @@ import {sequelize} from "../../db";
 import {Order} from "./Order";
 import {Token} from "./Token";
 import {ResetLink} from "./ResetLink";
-import {OrderUser} from "./OrderUser";
 
 export const User = sequelize.define<Model<any>>(
     'users',
@@ -71,8 +70,9 @@ export const User = sequelize.define<Model<any>>(
     }
 );
 
-User.belongsToMany(Order, {through: OrderUser, foreignKey: 'userIdUser' })
-Order.belongsToMany(User, {through: OrderUser, foreignKey: 'ordersIdOrders'})
+
+Order.hasOne(User, {foreignKey: 'idUser'})
+User.belongsTo(Order, {foreignKey: 'idUser'})
 
 Token.hasOne(User, {foreignKey: 'idUser'})
 User.belongsTo(Token, {foreignKey: 'idUser'})
